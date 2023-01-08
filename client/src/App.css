@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Great+Vibes&family=Roboto:wght@100&display=swa|Raleway:wght@100&display=swap');
+/* font-family: 'Roboto'; */
+/* font-family: 'Great Vibes', cursive; */
+/* font-family: 'Raleway'; */
+/* font-family: "Sofia"; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+.container,
+.container_login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  background-color: rgb(32, 147, 248);
+  border-radius: 15px;
+  box-shadow: -10px 0px 30px 2px rgb(251 133 0);
+}
+
+.welcome {
+  background-color: rgb(251, 133, 0);
+  padding: 3px;
+  font-size: 1.4rem;
+  border-top-left-radius: 15px;
+  color: white;
+  font-family: 'Raleway';
+}
+
+.end {
+  margin-top: 15px;
+  background-color: rgb(251, 133, 0);
+  font-size: 22px;
+  border-bottom-right-radius: 15px;
+  color: white;
+  text-align: end;
+  font-family: "Sofia";
+}
+
+.container .form,
+.container_login .form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+
+}
+
+.icon_eye_slash {
+  position: absolute;
+  margin-left: 60%;
+  transform: translateX(-10%);
+  color: rgb(42, 50, 50);
+  width: 18px;
+  height: 18px;
+}
+
+
+.form input {
+  box-shadow: 0 0 1px 0 black;
+  margin: 15px 0;
+  border-radius: 10px;
+  border: 1px solid rgb(207, 197, 197);
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  width: 70%;
+}
+
+input:required:valid {
+  background-size: 25px;
+  border: 2px solid rgb(42, 157, 143);
+}
+
+input:focus:invalid {
+  background-size: 25px;
+  border: 2px solid rgb(230, 57, 70);
+}
+
+.button_signup {
+  background-color: rgb(251, 133, 0);
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: 0.5s;
+  padding: 10px 10px;
+  width: 25%;
+  margin-bottom: 15px;
+}
+
+.button_login {
+  background-color: rgb(251, 133, 0);
+  color: white;
+  outline: none;
+  border: none;
+  font-size: 20px;
+  border-radius: 10px;
+  transition: 0.5s;
+  padding: 10px 10px;
+  width: 25%;
+}
+
+.button_login:hover,
+.button_signup:hover {
+  background-color: rgb(231, 111, 81);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  scale: 1.1;
+  transition: 0.5s;
+}
+
+.name_create {
+  width: 50%;
+  padding: 5px;
+  background-color: rgb(251, 133, 0);
+  padding: 5px;
+  font-size: 22px;
+  border-top-left-radius: 15px;
+  color: white;
+}
+
+.icon_warning {
+  color: red;
+  width: 18px;
+  height: 18px;
+}
+
+.register_icon_warning {
+  margin-top: -45px;
+  margin-left: 29%;
+  transform: translateX(-50%);
+  position: absolute;
+  color: red;
+  width: 18px;
+  height: 18px;
+}
+
+.icon_accept {
+  color: rgb(42, 157, 143);
+  margin-top: 20px;
+  margin-left: -40px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon_eye_slash:hover {
+  cursor: pointer;
+}
+
+.create {
+  margin-left: 10px;
+  position: relative;
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+.create:hover,
+.forget_password:hover,
+.back_to_login:hover {
+  color: rgb(236, 186, 148);
+  text-decoration: none !important;
+  scale: 1.1;
+  transition: 0.4s;
+}
+
+.forget_password {
+  margin-bottom: 5px;
+  margin-left: 50%;
+  color: rgb(170, 251, 235);
+  text-decoration: none;
+  transition: 0.4s;
+}
+
+.cubmit_backtologin {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.back_to_login {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  transition: 0.4s;
+
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width:768px) {
+
+  .container,
+  .container_login {
+    width: 90%;
+
+  }
+
+  .form input {
+    width: 100%;
+  }
+
+  .register_icon_warning {
+    margin-left: 39%;
+
+  }
+
+  .icon_eye_slash {
+    margin-left: 80%;
+
+  }
+
+  .button_signup {
+    width: 50%;
+  }
+
+  .button_login {
+    width: 50%;
+
+  }
+  .welcome {
+    font-size: 1.3rem;
+  }
+}
