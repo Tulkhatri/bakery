@@ -45,8 +45,7 @@ body {
   font-family: "Sofia";
 }
 
-.container .form,
-.container_login .form {
+.form {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -57,14 +56,16 @@ body {
 }
 
 .icon_eye_slash {
-  position: absolute;
-  margin-left: 60%;
+  position: relative;
+  margin-top: -43px;
+  margin-bottom: 10px;
+  margin-left: 62%;
   transform: translateX(-10%);
   color: rgb(42, 50, 50);
   width: 18px;
   height: 18px;
+  
 }
-
 
 .form input {
   box-shadow: 0 0 1px 0 black;
@@ -87,12 +88,11 @@ input:focus:invalid {
   border: 2px solid rgb(230, 57, 70);
 }
 
-.button_signup {
+.button_submit {
   background-color: rgb(251, 133, 0);
   color: white;
   outline: none;
   border: none;
-  cursor: pointer;
   font-size: 20px;
   border-radius: 10px;
   transition: 0.5s;
@@ -101,20 +101,7 @@ input:focus:invalid {
   margin-bottom: 15px;
 }
 
-.button_login {
-  background-color: rgb(251, 133, 0);
-  color: white;
-  outline: none;
-  border: none;
-  font-size: 20px;
-  border-radius: 10px;
-  transition: 0.5s;
-  padding: 10px 10px;
-  width: 25%;
-}
-
-.button_login:hover,
-.button_signup:hover {
+.button_submit:hover {
   background-color: rgb(231, 111, 81);
   outline: none;
   border: none;
@@ -259,18 +246,14 @@ input:focus:invalid {
   }
 
   .icon_eye_slash {
-    margin-left: 80%;
+    margin-left: 85%;
 
   }
 
-  .button_signup {
+  .button_submit {
     width: 50%;
   }
 
-  .button_login {
-    width: 50%;
-
-  }
   .welcome {
     font-size: 1.3rem;
   }

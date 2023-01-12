@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
-
+import { useNavigate } from "react-router-dom";
 const SignupSchema = Yup.object().shape({
     name: Yup.string()
         .required(<FontAwesomeIcon icon={faTriangleExclamation} className='register_icon_warning' />)
@@ -40,7 +40,7 @@ const SignupSchema = Yup.object().shape({
 
 });
 const Register = () => {
-
+    const navigate = useNavigate();
     return (
         
             <div className='container'>
@@ -55,14 +55,27 @@ const Register = () => {
                         conformPassword:'',
                     }}
                     validationSchema={SignupSchema}
-                    onSubmit={values => {
+                    onSubmit={async(values, {resetForm })=> {//reset form is a inbuild function
                         const requestOptions = {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(values)
+                            body: JSON.stringify(values),
                         };
-                        fetch('http://localhost:3005/register', requestOptions)
-                    }}
+                        try {
+                            const response = await fetch("http://localhost:3005/register", requestOptions)
+                            const data = await response.json()
+                           
+                            if(response.status === 409 && data.error){
+                              alert(data.error)
+                            }else if(response.status === 200){
+                              alert(data.msg)
+                              navigate("/");
+                            }
+                            // resetForm({ values: "" }); for blank form
+                          } catch (err) {
+                            alert(err);
+                          }
+                        }}
                 >
                     {({ errors, touched }) => (
                         <Form className='form'>
@@ -90,7 +103,7 @@ const Register = () => {
                                     <div>{errors.conformPassword}</div>
                                 ) : null}
                             <div className='cubmit_backtologin'>
-                                <button type="submit" className='button_signup'>Signup</button>
+                                <button type="submit" className='button_submit'>Signup</button>
                                 <Link to="/" className='back_to_login'>back to login</Link>
                             </div>
                             <div>
