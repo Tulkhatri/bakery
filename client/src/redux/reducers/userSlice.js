@@ -1,5 +1,4 @@
-import  ADD_USER_DETAILS from "../actionTypes/actionTypes";
-
+import  {ADD_USER_DETAILS,REMOVE_USER_DETAILS_LOGOUT} from '../actionTypes/actionTypes';
 const initialState = {
   email: '',
   name: '',
@@ -15,9 +14,15 @@ const userSlice = (state = initialState, action) => {
         name,
         email
       };
+      case REMOVE_USER_DETAILS_LOGOUT:
+      // const { name, email} = action.payload
+      return {
+        ...state,
+        name:'',
+        email:''
+      };
     default:
       return state;
   }
 };
-
 export default userSlice;

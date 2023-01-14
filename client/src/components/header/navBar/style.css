@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Sofia|Trirong|Great+Vibes&family=Roboto:wght@100&display=swa|Raleway:wght@100&display=swap');
+
 /* font-family: 'Roboto'; */
 /* font-family: 'Great Vibes', cursive; */
 /* font-family: 'Raleway'; */
-/* font-family: "Sofia"; */
+/* font-family: 'Sofia'; */
 * {
     margin: 0;
     padding: 0;
@@ -22,9 +23,10 @@ body {
     box-shadow: 10px 0 5px 2px black;
     padding: 10px;
     font-size: 1.7rem;
-    font-family: "Sofia";
+    font-family: 'Sofia';
     text-align: center;
 }
+
 .navBox2 {
     margin-top: -55px;
     width: 75%;
@@ -35,38 +37,74 @@ body {
     box-shadow: 10px 0 5px 2px black;
 }
 
-.icon{
-    margin-top: 7px;
+.user_icon {
+    margin-top: -20px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
     float: right;
     margin-right: 10%;
-    padding: 5px;
-    width: 30px;
-    height:30px;
+    width: 25px;
+    height: 25px;
 }
-.icon:hover{
+
+.icon:hover {
     cursor: pointer;
 }
-.user_details{
+
+.icon:hover .user_details {
+    display: block;
+}
+
+.user_details {
+    margin-top: 140px;
     width: 150px;
-    height:150px;
+    height: 115px;
     background-color: rgb(255, 255, 255);
-    float: right;
-    margin-right: 3%;
-    display: none;
     border: 4px solid rgb(32, 147, 248);
     border-radius: 10px;
-}  
+    display: none;
+}
+
+.button_logout {
+    padding: 7px 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(251, 133, 0);
+    margin: 15px;
+    color: white;
+}
+
+.button_logout:hover {
+    cursor: pointer;
+    background-color: rgb(231, 111, 81);
+    scale: 1.1;
+}
+
+.user_name {
+    margin-left: 10px;
+    color: rgb(32, 147, 248);
+}
 
 @media screen and (max-width:768px) {
     .navBox1 {
         width: 100%;
         text-align: left;
     }
+
     .navBox2 {
         width: 0%;
-    }   
-    .icon{
-      margin-right: 30px;
-}
+    }
 
+    .icon {
+        margin-right: 30px;
+    }
 }

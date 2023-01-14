@@ -1,5 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers } from "redux";
+import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers } from 'redux';
 import logger from 'redux-logger'
 import { persistReducer, persistStore } from 'redux-persist';
 import userSlice from './reducers/userSlice'

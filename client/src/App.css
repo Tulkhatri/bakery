@@ -2,7 +2,7 @@
 /* font-family: 'Roboto'; */
 /* font-family: 'Great Vibes', cursive; */
 /* font-family: 'Raleway'; */
-/* font-family: "Sofia"; */
+/* font-family: 'Sofia'; */
 
 * {
   margin: 0;
@@ -42,7 +42,7 @@ body {
   border-bottom-right-radius: 15px;
   color: white;
   text-align: end;
-  font-family: "Sofia";
+  font-family: 'Sofia';
 }
 
 .form {
@@ -64,7 +64,7 @@ body {
   color: rgb(42, 50, 50);
   width: 18px;
   height: 18px;
-  
+
 }
 
 .form input {
