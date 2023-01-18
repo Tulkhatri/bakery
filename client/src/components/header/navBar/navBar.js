@@ -5,11 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { logoutResetDetails } from '../../../redux/actions/userAction'
+import { useNavigate } from 'react-router-dom';
 const NavBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { name } = useSelector(state => state.user)
   const logoutFunction = () => {
     dispatch(logoutResetDetails())
+    navigate('/');
   }
   return (
     <>

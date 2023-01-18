@@ -1,12 +1,9 @@
 import React, { useState } from 'react'
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import NavBar from '../../components/header/navBar/navBar'
 import CustomForm from '../../components/form/customForm';
-
+import { Link } from 'react-router-dom'
 function AdminDashboard() {
-
-
   const postRequest = async (values) => {
     const requestOptions = {
       method: 'POST',
@@ -36,13 +33,8 @@ function AdminDashboard() {
     setInputFields(['name', 'price', 'image'])
     setAddButton(<button type='submit' className='button_submit'>Submit</button>)
   }
-  const viewOrderRequest = () => {
-
-
-  }
   return (
-    <div>
-      <NavBar />
+    <>
 
       <div className='admin_drawer'>
         <FontAwesomeIcon icon={faBars} className="admin_icon"></FontAwesomeIcon>
@@ -52,14 +44,12 @@ function AdminDashboard() {
             <div>
               <button onClick={addProduct}>Add Product</button>
             </div>
-            <button onClick={(viewOrderRequest)}>Order Request</button>
+            <Link to='/products'>  <button>View Products</button></Link>
           </div>
         </div>
       </div>
-
       <CustomForm inputFields={inputFields} addButton={addButton} postRequest={postRequest} />
-
-    </div>
+    </>
   );
 }
 export default AdminDashboard;
