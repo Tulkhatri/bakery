@@ -13,7 +13,9 @@ const NavBar = () => {
   }
   return (
     <>
-      <div className='navBox1'> Live Bakery</div>
+      <div className='navBox1'>
+        <div className='site_name'>Live bakery</div>
+      </div>
       <div className='navBox2'>
         <div className='icon'>
           <div className='user_details'>

@@ -188,6 +188,37 @@ input:focus:invalid {
 
 }
 
+/*card css*/
+.card_main_div {
+  margin: 0px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+.card_view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  height: 300px;
+  border: 3px solid red;
+  border-radius: 10px;
+  margin-top: 50px;
+  transition: 0.5s;
+}
+.card_view:hover {
+ scale: 1.1;
+ transition: 0.5s;
+ cursor: pointer;
+}
+.card_name{
+padding: 10px;
+}
+
 .App {
   text-align: center;
 }

@@ -16,43 +16,55 @@ body {
 }
 
 .navBox1 {
-    width: 25%;
-    height: 55px;
-    color: white;
-    background-color: rgb(231, 111, 81);
-    box-shadow: 10px 0 5px 2px black;
-    padding: 10px;
+    color: rgb(31, 28, 28);
     font-size: 1.7rem;
     font-family: 'Sofia';
     text-align: center;
+    border-bottom: 55px solid rgb(231, 111, 81);
+    border-right: 55px solid transparent;
 }
 
 .navBox2 {
-    margin-top: -55px;
-    width: 75%;
-    height: 55px;
-    color: white;
-    background-color: rgb(32, 147, 248);
+    margin-top: -54px;
+    width: 50%;
+    color: rgb(12, 11, 11);
     float: right;
-    box-shadow: 10px 0 5px 2px black;
+    border-top: 55px solid rgb(32, 147, 248);
+    border-left: 55px solid transparent;
+}
+
+.site_name {
+    position: absolute;
+    margin-left: 20px;
+    color: white;
+    font-size: 1.8rem;
 }
 
 .user_icon {
-    margin-top: -20px;
+    margin-top: -5px;
     position: absolute;
     width: 25px;
     height: 25px;
+    color: rgb(32, 147, 248);
+}
+
+.user_icon:hover {
+    color: rgb(231, 111, 81);
 }
 
 .icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
+    margin-top: -50px;
     float: right;
-    margin-right: 10%;
+    margin-right: 80px;
     width: 25px;
     height: 25px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%;
+    padding: 22px 22px;
+
 }
 
 .icon:hover {
@@ -64,7 +76,7 @@ body {
 }
 
 .user_details {
-    margin-top: 140px;
+    margin-top: 160px;
     width: 150px;
     height: 115px;
     background-color: rgb(255, 255, 255);
@@ -78,7 +90,7 @@ body {
     outline: none;
     border: none;
     border-radius: 5px;
-    background-color: rgb(251, 133, 0);
+    background-color: rgb(231, 111, 81);
     margin: 15px;
     color: white;
 }
@@ -94,17 +106,204 @@ body {
     color: rgb(32, 147, 248);
 }
 
-@media screen and (max-width:768px) {
-    .navBox1 {
-        width: 100%;
-        text-align: left;
+.admin_icon {
+
+    margin-top: -15px;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    color: rgb(255, 255, 255);
+
+}
+
+.admin_icon:hover {
+    cursor: pointer;
+    color: rgb(32, 147, 248);
+}
+
+.admin_drawer {
+    display: flex;
+    justify-content: center;
+    margin-top: -55px;
+    margin-left: 230px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    padding: 30px 10px;
+    position: fixed;
+
+}
+
+.admin_drawer:hover .admin_task {
+    display: block;
+    cursor: pointer;
+    display: block;
+}
+
+.admin_task {
+    margin-top: 28px;
+    margin-left: -44px;
+    width: 400px;
+    height: 500px;
+    background-color: rgb(32, 147, 248);
+    color: white;
+    display: none;
+    padding: 10px;
+    font-size: 2rem;
+
+}
+
+.admin_task button {
+    padding: 5px 15px;
+    font-size: 1.4rem;
+    margin: 10px;
+    border: none;
+    outline: none;
+    background-color: rgb(251, 133, 0);
+    color: white;
+    transition: 0.5s;
+    border-radius: 10px;
+}
+
+.admin_task button:hover {
+    cursor: pointer;
+    scale: 1.1;
+    transition: 0.5s;
+    box-shadow: 0px 0 6px 0px black;
+}
+
+@media screen and (min-width:1297px) {
+
+    .navBox2 {
+
+        width: 75%;
+    }
+
+    .admin_task {
+
+        margin-left: -77px;
+
+    }
+
+    .admin_task {
+        margin-left: -42px;
+        width: 436px;
+    }
+}
+
+@media screen and (min-width:1024px) and (max-width:1296px) {
+    .admin_task {
+
+        margin-left: -77px;
+
+    }
+}
+
+@media screen and (min-width:768px) and (max-width:1024px) {
+
+    /* .admin_drawer {
+        margin-left: 205px;
+    } */
+    .admin_task {
+        margin-top: 4px;
+        margin-left: 4px;
     }
 
     .navBox2 {
-        width: 0%;
+
+        width: 60%;
+    }
+
+    .admin_task {
+        margin-top: 28px;
+        margin-left: -77px;
+    }
+}
+
+
+@media screen and (min-width: 460px) and (max-width: 767px) {
+    .icon {
+        margin-right: 10px;
+    }
+
+    .admin_task {
+        margin-top: 28px;
+        margin-left: -77px;
+        width: 230px;
+    }
+
+    .navBox2 {
+        width: 60%;
+    }
+
+    .admin_drawer {
+        margin-left: 180px;
+    }
+
+    .admin_task {
+        margin-top: 28px;
+        margin-left: -148px;
+    }
+}
+
+@media screen and (min-width: 345px) and (max-width: 455px) {
+    .admin_drawer {
+        margin-left: 180px;
+    }
+
+    .admin_task {
+
+        margin-left: 21px;
+
+    }
+}
+
+@media screen and (min-width: 281px) and (max-width: 342px) {
+    .navBox2 {
+        width: 10%;
+
     }
 
     .icon {
-        margin-right: 30px;
+        margin-right: 10px;
+    }
+
+    .admin_drawer {
+        margin-left: 180px;
+    }
+
+    .admin_task {
+        margin-left: 20px;
     }
 }
+
+@media screen and (max-width: 281px) {
+    .navBox2 {
+        width: 35%;
+    }
+
+    .admin_drawer {
+        margin-left: 160px;
+    }
+
+    .admin_task {
+        margin-left: -170px;
+        width: 150px;
+
+    }
+
+    .icon {
+        margin-right: 10px;
+    }
+
+    .site_name {
+
+        font-size: 1.8rem;
+    }
+}
+
+
+/* .admin_drawer:hover ~ .admin_task {
+    display:block;
+    
+} */
