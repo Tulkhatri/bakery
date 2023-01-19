@@ -21,7 +21,7 @@ const Products = () => {
             <div className='admin_drawer'>
                 <Link to='/'> <FontAwesomeIcon icon={faBars} className="admin_icon"></FontAwesomeIcon> </Link>
             </div>
-            <div className="card_main_div">
+            <div className="card_main_div"onClick={(()=>alert("hello"))}>
                 {validItems.map((items) => {
                     return <Card items={items} />
                 }
