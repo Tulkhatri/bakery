@@ -1,6 +1,6 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import {Modal } from 'antd';
+import { Modal } from 'antd';
 import { useState } from 'react';
 const usersSchema = Yup.object().shape({
 });
