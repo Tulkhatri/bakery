@@ -47,6 +47,25 @@ body {
     height: 25px;
     color: rgb(32, 147, 248);
 }
+.action_button{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+    width: 100%;
+    
+}
+.edit_delete_icon{
+    width: 20px;
+    height: 20px;
+    color: rgb(87, 81, 81);
+    transition: 0.5s
+}
+.edit_delete_icon:hover{
+    color: rgb(231, 111, 81);
+    transition: 0.5s;
+    scale: 1.1;
+}
+
 
 .user_icon:hover {
     color: rgb(231, 111, 81);

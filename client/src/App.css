@@ -96,8 +96,8 @@ input:focus:invalid {
   font-size: 20px;
   border-radius: 10px;
   transition: 0.5s;
-  padding: 10px 10px;
-  width: 25%;
+  padding: 10px 2px;
+  width: 35%;
   margin-bottom: 15px;
 }
 

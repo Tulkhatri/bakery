@@ -1,32 +1,14 @@
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Modal } from 'antd';
-import { useState } from 'react';
 const usersSchema = Yup.object().shape({
 });
 const EditForm = (props) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const showModal = () => {
-    setIsModalOpen(true);
-    props.addProduct()
-  };
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
   return (
     <>
-      <button onClick={showModal}>
-        Add Product
-      </button>
-      <Modal title="  " open={isModalOpen} onOk={handleOk} onCancel={handleCancel}  footer={null}>
       <div className='login_parent'>
-            {/* <div className='container_login'> */}
-                <div className='welcome'>Add Products</div>
+                <div className='welcome'>{props.isAdminEdit ? `Edit ${props.items.name}`: 'Add Products'}</div>
                 <Formik
-                    initialValues={{}}
+                    initialValues={props.isAdminEdit ? props.items :{}}
                     validationSchema={usersSchema}
                     onSubmit={async (values, { resetForm }) => {//reset form is a inbuild function
                        props.postRequest(values);
@@ -51,9 +33,7 @@ const EditForm = (props) => {
                     )}
                 </Formik>
                 <div className='end'>Best online shop</div>
-            {/* </div> */}
         </div>
-      </Modal>
     </>
   );
 };
