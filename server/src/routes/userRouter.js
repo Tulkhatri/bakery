@@ -2,6 +2,40 @@ const express = require('express')
 const router = express.Router()
 const Users = require('../models/users')
 const bcrypt = require('bcrypt')
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/src/uploads/profile')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+    
+  }
+})
+const upload = multer({ storage: storage })
+router.post('/profile', upload.single('avatar'),  async(req, res, next)=> {
+const data=await Users.findByIdAndUpdate(req.body._id,{avatar:req.file.filename})//imageName lai update garne but req.file.filename ma j aauxa tehi banaune
+})
+
+router.get("/user/:id",async(req,res) => {
+  try {
+    const data= await Users.findById(req.params.id)
+   
+    if (data) {
+      res.status(200).json({
+        userDetails: data
+      })
+    } else {
+      res.status(500).json({ msg: 'Something is wrong' });
+    }
+ 
+} catch (err) {
+  console.log(err);
+}
+});
+
+
+
 router.post('/register', async (req, res) => {
   try {
     const hash = await bcrypt.hashSync(req.body.password, 10);

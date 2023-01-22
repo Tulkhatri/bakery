@@ -4,7 +4,9 @@ const userSchema = new mongoose.Schema({
     address: { type: String },
     phoneNumber: { type: String },
     email: { type: String },
+    //email: { type: String, require: true },//yesari model mai validation garna pani sakinxa
     password: { type: String },
+    avatar: { type: String },
 
 }, { collection: 'users' });
 module.exports = mongoose.model('users', userSchema)

@@ -8,6 +8,8 @@ import AdminDashboard from './containers/admin/adminDashboard';
 import { useSelector } from 'react-redux';
 import Products from './containers/sharedScreens/products';
 import NavBar from './components/header/navBar/navBar';
+import Profile from './containers/sharedScreens/profile';
+import PageNotFound from './containers/auth/pageNotFound';
 function App() {
   const { email } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com') {
@@ -23,6 +25,7 @@ const AuthScreens = () => {
       <Route path='/' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/forget_password' element={<ForgetPassword />} />
+      <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
 }
@@ -32,6 +35,8 @@ const UserScreens = () => {
   return (
     <Routes>
       <Route exact path='/' element={<UserDashboard />} />
+      <Route exact path='/profile' element={<Profile />} />
+      <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
 }
@@ -41,6 +46,8 @@ const AdminScreens = () => {
     <Routes>
       <Route exact path='/' element={<AdminDashboard />} />
       <Route exact path='/products' element={<Products />} />
+      <Route exact path='/profile' element={<Profile />} />
+      <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
 }

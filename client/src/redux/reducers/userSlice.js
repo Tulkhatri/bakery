@@ -1,25 +1,29 @@
-import  {ADD_USER_DETAILS,REMOVE_USER_DETAILS_LOGOUT} from '../actionTypes/actionTypes';
+import { ADD_USER_DETAILS, REMOVE_USER_DETAILS_LOGOUT } from '../actionTypes/actionTypes';
 const initialState = {
   email: '',
   name: '',
-  token: ''
+  token: '',
+  role: '',
+  _id: '',//react ma id matra hunxa but najhukkiyo vanera sabai tira _id garna sakiyo
 };
 
 const userSlice = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER_DETAILS:
-       const { name, email} = action.payload
+      const { name, email, role, _id } = action.payload//server le _id pathauxa yesma chahi _id nai rakhnuparxa
       return {
         ...state,
         name,
-        email
+        email,
+        role,
+        _id,
       };
-      case REMOVE_USER_DETAILS_LOGOUT:
+    case REMOVE_USER_DETAILS_LOGOUT:
       // const { name, email} = action.payload
       return {
         ...state,
-        name:'',
-        email:''
+        name: '',
+        email: ''
       };
     default:
       return state;
