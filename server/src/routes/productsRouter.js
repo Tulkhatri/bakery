@@ -47,7 +47,8 @@ const tokenValidator=(req,res,next)=>{//jun jun route lai protect garna man xa t
   });
 }
 
-router.get("/products", tokenValidator, async (req, res) => {
+// router.get("/products", tokenValidator, async (req, res) => {
+router.get("/products", async (req, res) => {
   try {
     const data = await Products.find()
     if (data) {
