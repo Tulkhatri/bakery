@@ -11,10 +11,10 @@ import NavBar from './components/header/navBar/navBar';
 import Profile from './containers/sharedScreens/profile';
 import PageNotFound from './containers/auth/pageNotFound';
 function App() {
-  const { email } = useSelector(state => state.user)
-  if (email === 'tulkhatri01@gmail.com') {
+  const { email, token } = useSelector(state => state.user)
+  if (email === 'tulkhatri01@gmail.com' && token) {
     return <><NavBar /><AdminScreens /></>
-  } else if (email !== '') {
+  } else if (email !== '' && token) {
     return <><NavBar /><UserScreens /></>
   }
   return <AuthScreens />

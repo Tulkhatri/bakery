@@ -10,13 +10,14 @@ const initialState = {
 const userSlice = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER_DETAILS:
-      const { name, email, role, _id } = action.payload//server le _id pathauxa yesma chahi _id nai rakhnuparxa
+      const { name, email, role, _id, token } = action.payload//server le _id pathauxa yesma chahi _id nai rakhnuparxa
       return {
         ...state,
         name,
         email,
         role,
         _id,
+        token,
       };
     case REMOVE_USER_DETAILS_LOGOUT:
       // const { name, email} = action.payload

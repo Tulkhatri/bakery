@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Products = require('../models/products')
+const jwt = require('jsonwebtoken');
 router.post('/products', async (req, res) => {
   try {
     const products = await Products.create(req.body);
@@ -37,8 +38,16 @@ router.delete('/products', async (req, res) => {
   }
 });
 
+const tokenValidator=(req,res,next)=>{//jun jun route lai protect garna man xa tyo route ma yo function pathaidine product ma pathayeko jasari product ma chahi pathauna naparla yo just example ko lagi matra
+  const token=(req.headers.authorization.split(" ")[1])
+  // console.log(req.headers.authorization.split(" ")[1]) just test
+  jwt.verify(token, process.env.SECRET_TOKEN, function(err, decoded) {
+    if(err)return res.sendStatus(403)
+    if(decoded) next()
+  });
+}
 
-router.get("/products", async (req, res) => {
+router.get("/products", tokenValidator, async (req, res) => {
   try {
     const data = await Products.find()
     if (data) {
