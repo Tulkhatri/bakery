@@ -5,6 +5,7 @@ import React from 'react'
 import { Modal } from 'antd';
 import EditForm from '../endt/editForm';
 import CustomForm from '../form/customForm';
+import { Link } from 'react-router-dom';
 const Card = (props) => {
 
     const postRequest = async (values) => {
@@ -80,7 +81,7 @@ const Card = (props) => {
             <Modal title="" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
                 {props.email === 'tulkhatri01@gmail.com' ? <EditForm isAdminEdit={true} items={props.items} inputFields={inputFields} addButton={addButton} addProduct={addProduct} postRequest={postRequest} /> : <CustomForm inputFields={inputFields} />}
             </Modal>
-            <div className="card_view" >
+             <div className="card_view" >
                 <div className="card_image">{props.items.image}</div>
                 <div className="card_name">{props.items.name}</div>
                 <div className="card_price">{props.items.price}</div>

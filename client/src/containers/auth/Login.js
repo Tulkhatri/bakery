@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { addUserDetails } from '../../redux/actions/userAction'
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 const usersSchema = Yup.object().shape({
     email: Yup.string()
         .email(<FontAwesomeIcon icon={faTriangleExclamation} className='register_icon_warning' />)
@@ -21,6 +22,7 @@ const usersSchema = Yup.object().shape({
         .min(8, 'Should be 8 chars minimum.'),
 });
 const Login = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     return (
         <div className='login_parent'>
