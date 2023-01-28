@@ -13,9 +13,11 @@
 body {
   background-color: rgb(255, 255, 255);
 }
-a{
+
+a {
   text-decoration: none;
 }
+
 .container,
 .container_login {
   position: absolute;
@@ -213,15 +215,72 @@ input:focus:invalid {
   margin-top: 50px;
   transition: 0.5s;
 }
+
 .card_view:hover {
- scale: 1.1;
- transition: 0.5s;
- cursor: pointer;
-}
-.card_name{
-padding: 10px;
+  scale: 1.1;
+  transition: 0.5s;
+  cursor: pointer;
 }
 
+.card_name {
+  padding: 10px;
+}
+
+/* profile page */
+.profile_page {
+  padding: 20px 0px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 75%;
+  box-shadow: 0 0 50px 1px  rgb(32, 147, 248);
+
+}
+
+.btn_save_profile {
+  width: 90px;
+  padding: 4px;
+  font-size: 1.2rem;
+  border: none;
+  background-color: rgb(251, 133, 0);
+  color: white;
+  margin-top: 5px;
+
+}
+.btn_save_profile:hover {
+ cursor: pointer;
+ background-color: rgb(231, 111, 81);
+}
+
+.profile_image {
+  border-radius: 10px;
+  width: 160px;
+  height: 160px;
+}
+
+.file_input {
+  opacity: 0;
+}
+.edit_profile {
+  position: absolute;
+  margin-left: 50px;
+  width: 20px;
+  height: 20px;
+  color: rgb(87, 81, 81);
+  z-index: -1;
+}
+
+.profile_name{
+ font-weight: 500;
+ font-size: 1.3rem;
+}
+.profile_email{
+  opacity: 50%;
+}
 .App {
   text-align: center;
 }

@@ -1,10 +1,13 @@
+import './../../App.css'
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from "axios";
 const Profile = () => {
     const { _id } = useSelector(State => State.user)
     const [file, setFile] = useState(null);
-    const [userDetails,setUserDetails]=useState({})
+    const [userDetails, setUserDetails] = useState({})
     const saveImage = async () => {
         const formData = new FormData()
         formData.append('avatar', file)
@@ -16,28 +19,35 @@ const Profile = () => {
         };
         const res = await fetch('http://localhost:3005/profile', requestOptions);
         const data = await res.json()
-       
+
     }
     const fetchUser = () => {
         axios.get(`http://localhost:3005/user/${_id}`).then((res) => {
             setUserDetails(res.data.userDetails)
-           
+
         })
-        
+
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchUser()
-    },[])
+    }, [])
 
     return (
         <>
             <h1>profile</h1>
-            <input type='file' onChange={(e) => setFile(e.target.files[0])}></input>
-            <button className="button_submit" onClick={() => saveImage()}>Save</button>
-           { userDetails.avatar && <img src={require(`../../uploads/profile/${userDetails.avatar}`)} width={100}height={100}alt='Loading'/>}
-            {JSON.stringify(userDetails)}
-          
+            <div className='profile_page'>
+                {userDetails.avatar && <img src={require(`../../uploads/profile/${userDetails.avatar}`)} className='profile_image' alt='Loading'/>}
+                <div>
+                <FontAwesomeIcon icon={faEdit} className='edit_profile' />
+                <input type='file' onChange={(e) => setFile(e.target.files[0])}className='file_input'></input>
+                </div>
+                <div className='profile_name'>{userDetails.name}</div>
+                <div className='profile_email'>{userDetails.email}</div>
+                <button className="btn_save_profile" onClick={() =>file? saveImage():alert("please Select the image")}>Save</button>
+                {/* {JSON.stringify(userDetails)} */}
+            </div>
+
         </>
     );
 }
