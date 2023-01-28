@@ -13,7 +13,9 @@
 body {
   background-color: rgb(255, 255, 255);
 }
-
+a{
+  text-decoration: none;
+}
 .container,
 .container_login {
   position: absolute;

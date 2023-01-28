@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -21,6 +22,7 @@ const usersSchema = Yup.object().shape({
         .min(8, 'Should be 8 chars minimum.'),
 });
 const Login = () => {
+    const navigate=useNavigate()
     const dispatch = useDispatch();
     return (
         <div className='login_parent'>
@@ -45,10 +47,11 @@ const Login = () => {
                         if (res.status === 200) {
                             dispatch(addUserDetails(data.userList))
                             // navigate('/home');role/ email anusar automatic navigate hunxa
+                            navigate( data.sendEmail === 'tulkhatri01@gmail.com' ?'/':'/productDetails')// first mai / ma kam gareko vaye navigate / garnuparne thiyena role/email anusar navigate hunethiyo but yeha /login ma kam vayeko le / ma navigate ganrupareko
                         } else {
                             alert(data.errorMsg)
                         }
-                        console.log(values);
+                        console.log(data);
                         // resetForm({ values: '' })
                     }}
                 >

@@ -71,7 +71,8 @@ router.post('/login', async (req, res) => {
         const { password, ...refactoredUserObj } = user
         res.status(200).json({
           msg: 'logged in successfully',
-          userList: refactoredUserObj//if we needed all data of user we just send user and not need to lean()but when we want to refactor user and take user without any one or mor field like password we need to remove internal cache by using lean()for porpor display
+          userList: refactoredUserObj,//if we needed all data of user we just send user and not need to lean()but when we want to refactor user and take user without any one or mor field like password we need to remove internal cache by using lean()for porpor display
+           sendEmail: email
         })
       }
       else {
