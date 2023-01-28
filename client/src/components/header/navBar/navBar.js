@@ -11,8 +11,13 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const { name } = useSelector(state => state.user)
   const logoutFunction = () => {
-    dispatch(logoutResetDetails())
-    navigate('/');
+    if(name!==''){
+      dispatch(logoutResetDetails())
+      navigate('/')
+    }
+    else{
+      navigate('/login')
+    }
   }
   return (
     <>
@@ -23,7 +28,7 @@ const NavBar = () => {
         <div className='icon'>
           <div className='user_details'>
           <Link to='/profile'>  <div className='user_name'>{name}</div></Link>
-            <button className='button_logout' onClick={logoutFunction}>Logout</button>
+            <button className='button_logout' onClick={logoutFunction}>{name?'Logout':'Login'}</button>
           </div>
           <FontAwesomeIcon icon={faUser} className='user_icon' />
         </div>
