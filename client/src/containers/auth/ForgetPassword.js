@@ -3,7 +3,7 @@ const ForgetPassword = () => {
     return (
         <>
             <h1>Forget Password</h1>
-            <Link to='/'>back to login</Link>
+            <Link to='/login'>back to login</Link>
 
         </>
     );

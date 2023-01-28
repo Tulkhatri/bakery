@@ -104,7 +104,7 @@ const Register = () => {
                         ) : null}
                         <div className='cubmit_backtologin'>
                             <button type='submit' className='button_submit'>Signup</button>
-                            <Link to='/' className='back_to_login'>back to login</Link>
+                            <Link to='/login' className='back_to_login'>back to login</Link>
                         </div>
                         <div>
                         </div>

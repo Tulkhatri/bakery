@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-
-const ProductDetails=()=>{
-    return(
+import { useSelector } from 'react-redux';
+const ProductDetails = () => {
+    const { email, token } = useSelector(state => state.user)
+    return (
         <>
-        <h1>Product Details</h1>
-        <Link to='/login'><button className="button_submit">checkout</button></Link>
+            <h1> Welcome ProductDetails Page</h1>
+            <Link to={(email !== '' && token) ? '/payment' : '/login'}> <button >Checkout</button></Link>
         </>
     );
 }
-export default ProductDetails
+export default ProductDetails;
