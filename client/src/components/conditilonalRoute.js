@@ -25,7 +25,7 @@ const AuthScreens = () => {
     <Routes>
       <Route path='/' element={<><NavBar /><Products /></>} />
       <Route path='/productDetails' element={<><NavBar/><ProductDetails /></>} />
-      <Route path='/payment' element={<PaymentMethod />} />
+      {/* <Route path='/payment' element={<PaymentMethod />} /> */}
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/forget_password' element={<ForgetPassword />} />

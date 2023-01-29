@@ -5,8 +5,9 @@ import React from 'react'
 import { Modal } from 'antd';
 import EditForm from '../endt/editForm';
 import CustomForm from '../form/customForm';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Card = (props) => {
+    const navigate = useNavigate();
     const postRequest = async (values) => {
         const requestOptions = {
             method: 'PUT',
@@ -74,12 +75,16 @@ const Card = (props) => {
         }
 
     }
+    const productDetails = () => {
+        navigate('/productDetails',{state:props.items})
+        console.log(props.items)
+    }
     return (
         <>
             <Modal title="" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
                 {props.email === 'tulkhatri01@gmail.com' ? <EditForm isAdminEdit={true} items={props.items} inputFields={inputFields} addButton={addButton} addProduct={addProduct} postRequest={postRequest} /> : <CustomForm inputFields={inputFields} />}
             </Modal>
-            <Link to={props.email === 'tulkhatri01@gmail.com' ? '':'/productDetails'}><div className="card_view">
+            <div className="card_view" onClick={() => productDetails()}>
                 <div className="card_image">{props.items.image}</div>
                 <div className="card_name">{props.items.name}</div>
                 <div className="card_price">{props.items.price}</div>
@@ -91,7 +96,7 @@ const Card = (props) => {
                         <FontAwesomeIcon icon={faTrash} className='edit_delete_icon' />
                     </div> : ''}
                 </div>
-            </div></Link>
+            </div>
         </>
     );
 }

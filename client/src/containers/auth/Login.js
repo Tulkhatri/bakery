@@ -47,7 +47,7 @@ const Login = () => {
                         if (res.status === 200) {
                             dispatch(addUserDetails(data.userList))
                             // navigate('/home');role/ email anusar automatic navigate hunxa
-                            navigate(data.sendEmail === 'tulkhatri01@gmail.com' ? '/' : '/productDetails')// first mai / ma kam gareko vaye navigate / garnuparne thiyena role/email anusar navigate hunethiyo but yeha /login ma kam vayeko le / ma navigate ganrupareko
+                            navigate(data.sendEmail === 'tulkhatri01@gmail.com' ? '/' : '/')// first mai / ma kam gareko vaye navigate / garnuparne thiyena role/email anusar navigate hunethiyo but yeha /login ma kam vayeko le / ma navigate ganrupareko
                         } else {
                             alert(data.errorMsg)
                         }
