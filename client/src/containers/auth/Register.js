@@ -69,7 +69,7 @@ const Register = () => {
                             alert(data.error)
                         } else if (response.status === 200) {
                             alert(data.msg)
-                            navigate('/');
+                            navigate('/login');
                         }
                         // resetForm({ values: '' }); for blank form
                     } catch (err) {

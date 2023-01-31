@@ -61,6 +61,7 @@ function AdminDashboard() {
               <button onClick={() => showModal(true)}>Add Product</button>
             </div>
             <Link to='/products'>  <button>View Products</button></Link>
+            <Link to='/orderProducts'>  <button>Ordered Products</button></Link>
           </div>
         </div>
       </div>

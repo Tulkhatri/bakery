@@ -39,7 +39,9 @@ body {
     color: white;
     font-size: 1.8rem;
 }
-
+.site_name:hover {
+    cursor: pointer;
+}
 .user_icon {
     margin-top: -5px;
     position: absolute;
@@ -92,6 +94,7 @@ body {
 
 .icon:hover .user_details {
     display: block;
+    z-index: 1;
 }
 
 .user_details {

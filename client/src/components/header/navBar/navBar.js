@@ -22,7 +22,7 @@ const NavBar = () => {
   return (
     <>
       <div className='navBox1'>
-        <div className='site_name'>Live bakery</div>
+      <Link to='/'><div className='site_name'>Live bakery</div></Link>
       </div>
       <div className='navBox2'>
         <div className='icon'>

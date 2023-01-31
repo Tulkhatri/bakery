@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Products = require('../models/products')
+const OrderProducts = require('../models/orderProducts')
 const jwt = require('jsonwebtoken');
 router.post('/products', async (req, res) => {
   try {
@@ -54,6 +55,30 @@ router.get("/products", async (req, res) => {
     if (data) {
       res.status(200).json({
         products: data
+      })
+    }
+  } catch (err) {
+  
+  }
+});
+router.post('/orderProducts',async(req,res)=>{
+  try{
+const orderProducts=await OrderProducts.create(req.body)
+if (orderProducts) {
+  res.json({ msg: 'Order successful' });
+} else {
+  res.json({ msg: 'something went worng' });
+}
+  }catch(err){
+
+  }
+});
+router.get('/orderProducts',async(req,res)=>{
+  try {
+    const data = await OrderProducts.find()
+    if (data) {
+      res.status(200).json({
+        orderProducts: data
       })
     }
   } catch (err) {

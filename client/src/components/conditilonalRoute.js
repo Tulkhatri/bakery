@@ -11,6 +11,7 @@ import Profile from '../containers/sharedScreens/profile';
 import PageNotFound from '../containers/auth/pageNotFound';
 import ProductDetails from '../containers/sharedScreens/productDetails';
 import PaymentMethod from '../containers/sharedScreens/paymentMethod';
+import OrderProducts from '../containers/sharedScreens/orderProducts';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
@@ -42,6 +43,7 @@ const UserScreens = () => {
       <Route path='/productDetails' element={<ProductDetails />} />
       <Route path='/payment' element={<PaymentMethod />} />
       <Route exact path='/profile' element={<Profile />} />
+      <Route exact path='/orderProducts' element={<OrderProducts />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
@@ -53,6 +55,7 @@ const AdminScreens = () => {
       <Route exact path='/' element={<AdminDashboard />} />
       <Route exact path='/products' element={<Products />} />
       <Route exact path='/profile' element={<Profile />} />
+      <Route exact path='/orderProducts' element={<OrderProducts />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
   );
