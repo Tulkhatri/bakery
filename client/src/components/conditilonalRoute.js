@@ -12,6 +12,8 @@ import PageNotFound from '../containers/auth/pageNotFound';
 import ProductDetails from '../containers/sharedScreens/productDetails';
 import PaymentMethod from '../containers/sharedScreens/paymentMethod';
 import OrderProducts from '../containers/sharedScreens/orderProducts';
+import ImageUpload from '../imageUpload';
+import ImageDisplay from '../imageDisplay';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
@@ -26,7 +28,6 @@ const AuthScreens = () => {
     <Routes>
       <Route path='/' element={<><NavBar /><Products /></>} />
       <Route path='/productDetails' element={<><NavBar/><ProductDetails /></>} />
-      {/* <Route path='/payment' element={<PaymentMethod />} /> */}
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/forget_password' element={<ForgetPassword />} />
