@@ -9,6 +9,7 @@ const Products = () => {
     const { email } = useSelector(state => state.user)
     const [validItems, setValidItems] = useState([])
     const fetchProducts = () => {
+
         axios.get("http://localhost:3005/products").then((res) => {
             setValidItems(res.data.products)
         })

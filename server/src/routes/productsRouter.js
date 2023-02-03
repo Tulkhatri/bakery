@@ -3,18 +3,51 @@ const router = express.Router()
 const Products = require('../models/products')
 const OrderProducts = require('../models/orderProducts')
 const jwt = require('jsonwebtoken');
-router.post('/products', async (req, res) => {
-  try {
-    const products = await Products.create(req.body);
-    
-    if (products) {
-      res.json({ msg: 'Product is added' });
-    } else {
-      res.json({ msg: 'something went worng' });
-    }
-  } catch (err) {
-   
+const multer = require('multer')
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/src/uploads/product')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
   }
+})
+const upload = multer({ storage: storage })
+
+router.post('/products',upload.single('photo'), async (req, res, next) => {
+
+
+  const body = req.body;
+  
+  const products = new Products({
+    name: body.name,
+    price: body.price,
+    image: body.image,
+    photo: req.file.filename,
+    // req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,//this is optional for photo path
+  });
+  products
+    .save()
+       if (products) {
+          res.json({ msg: 'Product is added' });
+        } else {
+          res.json({ msg: 'something went worng' });
+        }
+    // .catch((err) => console.log(err.message));
+
+
+  // try {
+  //   const products = await Products.create(req.body);
+    
+  //   if (products) {
+  //     res.json({ msg: 'Product is added' });
+  //   } else {
+  //     res.json({ msg: 'something went worng' });
+  //   }
+  // } catch (err) {
+   
+  // }
 });
 
 router.put('/products', async (req, res) => {

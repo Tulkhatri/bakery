@@ -76,7 +76,7 @@ const Card = (props) => {
 
     }
     const productDetails = () => {
-        navigate('/productDetails',{state:props.items})
+         navigate(props.email === 'tulkhatri01@gmail.com' ?'':'/productDetails',{state:props.items})
         console.log(props.items)
     }
     return (
@@ -85,9 +85,12 @@ const Card = (props) => {
                 {props.email === 'tulkhatri01@gmail.com' ? <EditForm isAdminEdit={true} items={props.items} inputFields={inputFields} addButton={addButton} addProduct={addProduct} postRequest={postRequest} /> : <CustomForm inputFields={inputFields} />}
             </Modal>
             <div className="card_view" onClick={() => productDetails()}>
-                <div className="card_image">{props.items.image}</div>
+                <div className="card_image">
+                {props.items.photo && <img src={require(`../../uploads/product/${props.items.photo}`)} alt='Loading'/>}
+                </div>
+                {/* <div className="card_image">{props.items.image}</div> */}
                 <div className="card_name">{props.items.name}</div>
-                <div className="card_price">{props.items.price}</div>
+                <div className="card_price">{"Rs. "+props.items.price}</div>
                 <div className='action_button'>
                     {props.email === 'tulkhatri01@gmail.com' ? <div onClick={() => showModal(true)}>
                         <FontAwesomeIcon icon={faEdit} className='edit_delete_icon' />

@@ -113,7 +113,11 @@ input:focus:invalid {
   scale: 1.1;
   transition: 0.5s;
 }
-
+.button_submit_buynow{
+margin-left: 50%;
+transform: translateX(-20%);
+margin-top: 20px;
+}
 .name_create {
   width: 50%;
   padding: 5px;
@@ -208,11 +212,12 @@ input:focus:invalid {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 300px;
+  width: 270px;
   height: 300px;
-  border: 3px solid red;
+  /* border: 3px solid red; */
+  box-shadow: 0px 0px 2px 1px rgb(251 133 0);
   border-radius: 10px;
-  margin-top: 50px;
+  margin: 40px 20px;
   transition: 0.5s;
 }
 
@@ -220,10 +225,20 @@ input:focus:invalid {
   scale: 1.1;
   transition: 0.5s;
   cursor: pointer;
+  box-shadow: -5px 0px 30px 1px rgb(251 133 0);
 }
 
 .card_name {
   padding: 10px;
+}
+.card_image {
+  width:200px;
+  height:200px;
+  overflow: hidden;
+}
+.card_image img {
+  width: 100%;
+  height:100%
 }
 
 /* profile page */
@@ -334,6 +349,11 @@ tr:nth-child(even) {
   width: 400px;
   height: 400px;
   box-shadow: -10px 0px 30px 2px rgb(251 133 0);
+  overflow: hidden;
+}
+.product_page_image img{
+ width: 100%;
+ height: 100%;
 }
 .product_page_data{
   margin-top: 20px;

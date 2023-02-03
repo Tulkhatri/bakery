@@ -21,7 +21,7 @@ const OrderProducts=()=>{
             <tr>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Image</th>
+                <th>Status</th>
                 
             </tr>
             
