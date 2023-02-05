@@ -14,20 +14,23 @@ import PaymentMethod from '../containers/sharedScreens/paymentMethod';
 import OrderProducts from '../containers/sharedScreens/orderProducts';
 import ImageUpload from '../imageUpload';
 import ImageDisplay from '../imageDisplay';
+import Slideshow from './header/imageSlide/imageSlide';
+import Footer from './footer/footer';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
-    return <><NavBar /><AdminScreens /></>
+    return <><NavBar /><AdminScreens /><Footer/></>
   } else if (email !== '' && token) {
-    return <><NavBar /><UserScreens /></>
+    return <><NavBar /><UserScreens /><Footer/></>
   }
   return <AuthScreens />
 }
 const AuthScreens = () => {
   return (
     <Routes>
-      <Route path='/' element={<><NavBar /><Products /></>} />
-      <Route path='/productDetails' element={<><NavBar/><ProductDetails /></>} />
+      {/* <Route path='/' element={<><NavBar /><Slideshow /></>} /> */}
+      <Route path='/' element={<><NavBar /><Slideshow /><Products /><Footer/></>} />
+      <Route path='/productDetails' element={<><NavBar/><ProductDetails /><Footer/></>} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/forget_password' element={<ForgetPassword />} />

@@ -21,7 +21,7 @@ const Products = () => {
     return (
         <>
             <div className='admin_drawer'>
-                <Link to='/'> <FontAwesomeIcon icon={faBars} className="admin_icon"></FontAwesomeIcon> </Link>
+                {/* <Link to='/'> <FontAwesomeIcon icon={faBars} className="admin_icon"></FontAwesomeIcon> </Link> */}
             </div>
             <div className="card_main_div">
                 {validItems.map((items) => {
