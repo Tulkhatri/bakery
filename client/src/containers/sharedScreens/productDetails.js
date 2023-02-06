@@ -20,7 +20,7 @@ const ProductDetails = () => {
                     <div className="product_details_name">{state.name}</div>
                     <div className="product_details_price">Rs. {state.price}</div>
                 </div>
-                <div className="product_page_delivery">Delovery option</div>
+                <div className="product_page_delivery">Delivery option</div>
             </div>
             
 

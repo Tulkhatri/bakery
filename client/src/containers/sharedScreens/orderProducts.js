@@ -1,45 +1,48 @@
-import axios from "axios";
 import './../../App.css'
+import axios from "axios";
+import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const OrderProducts=()=>{
-
+const OrderProducts = () => {
+    const { name, _id, email } = useSelector(state => state.user);
     const [orderProduct, setOrderProducts] = useState([])
     const fetchOrderProducts = () => {
-        axios.get("http://localhost:3005/orderProducts").then((res) => {
+        const apiReqAdmin = `http://localhost:3005/orderProducts`
+        const apiReqUser = `http://localhost:3005/orderProducts?userId=${_id}`
+        axios.get(email === 'tulkhatri01@gmail.com' ? apiReqAdmin : apiReqUser).then((res) => {
             setOrderProducts(res.data.orderProducts)
-           
+
         })
     }
     useEffect(() => {
         fetchOrderProducts()
     }, [])
 
-    return(
+    return (
         <>
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Status</th>
-                
-            </tr>
-            
-                
-           
-        {orderProduct.map((items)=>{
-            return(
-                <>
+            <table>
                 <tr>
-                <td>{items.name}</td>
-                <td>{items.price}</td>
-                <td>{items.image}</td>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Status</th>
+
                 </tr>
-                </>
-            );
-        })}
-        
-        </table>
+
+
+
+                {orderProduct.map((items) => {
+                    return (
+                        <>
+                            <tr>
+                                <td>{items.name}</td>
+                                <td>{items.price}</td>
+                                <td>{items.image}</td>
+                            </tr>
+                        </>
+                    );
+                })}
+
+            </table>
         </>
     );
 }
