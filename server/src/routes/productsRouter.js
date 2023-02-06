@@ -84,10 +84,12 @@ const tokenValidator=(req,res,next)=>{//jun jun route lai protect garna man xa t
 // router.get("/products", tokenValidator, async (req, res) => {
 router.get("/products", async (req, res) => {
   try {
-    const data = await Products.find()
+    const totalProductLength=await Products.find()
+    const data = await Products.find().limit(req.query.size).skip(req.query.size* req.query.page - req.query.size)
     if (data) {
       res.status(200).json({
-        products: data
+        products: data,
+        totalProudctCount:totalProductLength.length
       })
     }
   } catch (err) {

@@ -21,6 +21,7 @@ const NavBar = () => {
   }
   return (
     <>
+    <div>
       <div className='navBox1'>
       <Link to='/'><div className='site_name'>Live bakery</div></Link>
       </div>
@@ -32,6 +33,7 @@ const NavBar = () => {
           </div>
           <FontAwesomeIcon icon={faUser} className='user_icon' />
         </div>
+      </div>
       </div>
     </>
   );

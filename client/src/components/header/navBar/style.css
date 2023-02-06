@@ -8,27 +8,54 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
 }
-
-html{
-    min-height: 100vh;
-  }
-  body {
-    /* background-color: rgb(232, 219, 219); */
-    min-height: 100vh;
-  }
-   .footer {
-    position: relative;
-    bottom: 0px;
-    width: 100%;
-    height: 25vh;
-    padding-top: 10px;
-    padding-bottom: 0px;
-    background-color: rgb(32, 147, 248);
-    z-index: -10;
+/* Scroll bar */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
   }
   
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1px grey;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 10px;
+  }
+  /* Scroll bar */
+  body {
+    background-color:#f4f6f9;
+  }
+  .footer {
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    border-top: 1px solid rgb(200, 194, 194);
+    align-items:center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 25vh;
+    padding: 20px;
+    background-color: #f4f6f9;
+    z-index: -100;
+    
+  }
+  .footer .footer_heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+  .footer .footer_heading span{
+    font-size: 1rem;
+    opacity: 0.5;
+  }
 .navBox1 {
     color: rgb(31, 28, 28);
     font-size: 1.7rem;
@@ -343,3 +370,9 @@ html{
     display:block;
     
 } */
+.contentCss{
+    background-color: #fff;
+}
+.Pdetail {
+    background: #fff;
+}

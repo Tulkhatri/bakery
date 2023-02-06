@@ -23,7 +23,11 @@ a {
   border-radius: 15px;
   box-shadow: -10px 0px 30px 2px rgb(251 133 0);
 }
-
+.pagination{
+  background: white;
+  justify-content: center;
+  display: flex;
+}
 .welcome {
   background-color: rgb(251, 133, 0);
   padding: 3px;
@@ -194,34 +198,38 @@ input:focus:invalid {
 
 /*card css*/
 .card_main_div {
-  /* margin-left: 50%;
-  transform: translateX(-50%); */
   display: flex;
-  justify-content: space-evenly;
+  /* justify-content: space-around; */
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
+  background-color: #fff;
+  margin: 0;
+  justify-content: center;
 
 }
 
 .card_view {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 270px;
-  height: 300px;
-  box-shadow: 0px 0px 2px 1px rgb(251 133 0);
-  border-radius: 10px;
-  margin: 40px 20px;
-  transition: 0.5s;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 250px;
+    height: 300px;
+    box-shadow: 0px 0px 1px 0px #6a6c6e;
+    border-radius: 10px;
+    margin: 15px 30px;
+    background-color: rgb(255, 255, 255);
+    transition: 0.5s;
 }
 
+
+
 .card_view:hover {
-  scale: 1.1;
+  scale: 1.05;
   transition: 0.5s;
   cursor: pointer;
-  box-shadow: -5px 0px 30px 1px rgb(251 133 0);
+  border: 1px solid #f4f6f9;
 }
 
 .card_name {

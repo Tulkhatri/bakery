@@ -10,6 +10,7 @@ const ProductDetails = () => {
     }
     return (
         <>
+        <div className="Pdetail">
             <div className="product_page">
                 <div className="product_page_image">
                 {state.photo && <img src={require(`../../uploads/product/${state.photo}`)} alt='Loading'/>}
@@ -21,7 +22,7 @@ const ProductDetails = () => {
                 </div>
                 <div className="product_page_delivery">Delovery option</div>
             </div>
-
+            
 
             {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}> <button className="button_submit" >Buy Now</button></Link> */}
             {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}>  */}
@@ -29,6 +30,7 @@ const ProductDetails = () => {
             <button className="button_submit" onClick={()=>payment()}>Buy Now</button>
             </div>
             {/* </Link> */}
+            </div>
         </>
     );
 }

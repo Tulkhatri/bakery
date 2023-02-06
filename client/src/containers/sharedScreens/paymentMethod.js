@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Link,useLocation } from "react-router-dom";
-
+// import "../../components/header/navBar/style.css"
 const PaymentMethod=()=>{
     const { state } = useLocation();
     const orderProducts={
@@ -34,11 +34,13 @@ const PaymentMethod=()=>{
     }
     return(
         <>
+        <div className="contentCss">
         <h1> Payment</h1>
        <Link to='/eSewa'> <button >eSewa</button></Link>
        <Link to='/orderProducts'> <button onClick={()=>conformPayment()}>Cash On Delivery</button></Link>
        {/* <div>{state.name}</div> */}
        <div>{state.name}</div>
+       </div>
         </>
     );
 }
