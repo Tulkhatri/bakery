@@ -108,6 +108,20 @@ router.post('/orderProducts', async (req, res) => {
 
   }
 });
+
+router.patch('/orderProducts/status', async (req, res) => {
+  try {
+    const orderProducts = await OrderProducts.findByIdAndUpdate(req.body.id,{"orderStatus":req.body.status})
+    if (orderProducts) {
+      res.json({ msg: 'Order successful' });
+    } else {
+      res.json({ msg: 'something went worng' });
+    }
+  } catch (err) {
+
+  }
+});
+
 router.get('/orderProducts', async (req, res) => {
   try {
     const data = await OrderProducts.find()
