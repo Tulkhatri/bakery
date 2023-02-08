@@ -16,6 +16,7 @@ import ImageUpload from '../imageUpload';
 import ImageDisplay from '../imageDisplay';
 import Slideshow from './header/imageSlide/imageSlide';
 import Footer from './footer/footer';
+import FavoriteProducts from '../containers/sharedScreens/favoriteProducts';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
@@ -44,6 +45,7 @@ const UserScreens = () => {
   return (
     <Routes>
       <Route exact path='/' element={<UserDashboard />} />
+      <Route exact path='/fevorateProducts' element={<FavoriteProducts />} />
       <Route path='/productDetails' element={<ProductDetails />} />
       <Route path='/payment' element={<PaymentMethod />} />
       <Route exact path='/profile' element={<Profile />} />
@@ -60,6 +62,7 @@ const AdminScreens = () => {
       <Route exact path='/products' element={<Products />} />
       <Route exact path='/profile' element={<Profile />} />
       <Route exact path='/orderProducts' element={<OrderProducts />} />
+      <Route exact path='/fevorateProducts' element={<FavoriteProducts />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
   );

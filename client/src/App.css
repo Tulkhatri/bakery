@@ -9,9 +9,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 a {
   text-decoration: none;
 }
+
 .container,
 .container_login {
   position: absolute;
@@ -23,11 +25,13 @@ a {
   border-radius: 15px;
   box-shadow: -10px 0px 30px 2px rgb(251 133 0);
 }
-.pagination{
+
+.pagination {
   background: white;
   justify-content: center;
   display: flex;
 }
+
 .welcome {
   background-color: rgb(251, 133, 0);
   padding: 3px;
@@ -211,40 +215,104 @@ input:focus:invalid {
 
 .card_view {
   display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 250px;
-    height: 300px;
-    box-shadow: 0px 0px 1px 0px #6a6c6e;
-    border-radius: 10px;
-    margin: 15px 30px;
-    background-color: rgb(255, 255, 255);
-    transition: 0.5s;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 235px;
+  height: 300px;
+  box-shadow: 0px 0px 1px 0px #6a6c6e;
+  border-radius: 10px;
+  margin: 40px;
+  background-color: rgb(255, 255, 255);
+  transition: 0.3s;
+  border: 5px solid #f4f6f9;
+
+  overflow: hidden;
 }
 
-
-
 .card_view:hover {
-  scale: 1.05;
-  transition: 0.5s;
+  transition: 0.3s;
   cursor: pointer;
   border: 1px solid #f4f6f9;
 }
 
-.card_name {
-  padding: 10px;
+.namePrice {
+  width: 100%;
+  text-align: center;
+  opacity: 0.7;
+  background-color: #f4f6f9;
+  border-top: 1px solid #cbc8c8;
+  padding: 5px;
 }
 
 .card_image {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: 85%;
   overflow: hidden;
 }
 
 .card_image img {
   width: 100%;
-  height: 100%
+  height: 100%;
+
+}
+
+.favorite_icon {
+  position: absolute;
+  margin-left: 240px;
+  margin-top: 48px;
+  color: #78797b;
+  width: 22px;
+  height: 22px;
+  transition: 0.5s;
+
+}
+
+#favorate_icon_Redcolor {
+  color: red
+}
+
+.favorite_icon:hover {
+  scale: 1.1;
+  transition: 0.5s;
+  color: #f32645;
+
+
+}
+
+.fevorateCard {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  /* padding: 0 2px; */
+  margin-top: 45px;
+  right: 10px;
+  border: 2px solid rgb(158, 151, 151);
+  box-shadow: 0 1px 80px 1px rgb(91, 89, 89);
+  transition: 0.2s;
+}
+
+.fevorateCard:hover {
+
+  scale: 1.03;
+  transition: 0.2s;
+}
+
+.fevorateCard_title {
+  background-color: rgb(231, 111, 81);
+  border-bottom: 1px solid rgb(147, 140, 140);
+  display: flex;
+  justify-content: space-between;
+}
+
+.fevorateCard_close {
+  padding: 0 4px;
+}
+
+.fevorateCard_data {
+  padding: 0 3px;
+  opacity: 0.7;
+  cursor: pointer;
 }
 
 /* profile page */

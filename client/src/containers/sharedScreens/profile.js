@@ -1,7 +1,7 @@
 import './../../App.css'
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from "axios";
 const Profile = () => {
@@ -39,7 +39,7 @@ const Profile = () => {
             <div className='profile_page'>
                 {userDetails.avatar && <img src={require(`../../uploads/profile/${userDetails.avatar}`)} className='profile_image' alt='Loading'/>}
                 <div>
-                <FontAwesomeIcon icon={faEdit} className='edit_profile' />
+                <FontAwesomeIcon icon={faCamera} className='edit_profile' />
                 <input type='file' onChange={(e) => setFile(e.target.files[0])}className='file_input'></input>
                 </div>
                 <div className='profile_name'>{userDetails.name}</div>

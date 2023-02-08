@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Products = require('../models/products')
 const OrderProducts = require('../models/orderProducts')
+const FevorateProducts = require('../models/fevorateProducts')
 const jwt = require('jsonwebtoken');
 const multer = require('multer')
 
@@ -71,6 +72,19 @@ router.delete('/products', async (req, res) => {
 
   }
 });
+router.delete('/fevorateProducts', async (req, res) => {
+  try {
+    if (req.query.userId) {
+    const data = await FevorateProducts.findByIdAndDelete(req.body._id)
+    if (data) {
+      res.status(200).json({ msg: "Fevorate is removed" })
+    } else { res.json({ msg: "Something is worong" }) }
+  }
+  } catch (err) {
+
+  
+}
+});
 
 const tokenValidator = (req, res, next) => {//jun jun route lai protect garna man xa tyo route ma yo function pathaidine product ma pathayeko jasari product ma chahi pathauna naparla yo just example ko lagi matra
   const token = (req.headers.authorization.split(" ")[1])
@@ -103,6 +117,39 @@ router.post('/orderProducts', async (req, res) => {
       res.json({ msg: 'Order successful' });
     } else {
       res.json({ msg: 'something went worng' });
+    }
+  } catch (err) {
+
+  }
+});
+
+router.post('/fevorateProducts', async (req, res) => {
+  try {
+    const fevorateProducts = await FevorateProducts.create(req.body)
+    if (fevorateProducts) {
+      res.json({ msg: 'Fevorate Items is added' });
+    } else {
+      res.json({ msg: 'something went worng' });
+    }
+  } catch (err) {
+
+  }
+});
+
+router.get('/fevorateProducts', async (req, res) => {
+  try {
+    const data = await FevorateProducts.find()
+    if (req.query.userId) {
+      const data = await FevorateProducts.find({ "userId": req.query.userId })
+      res.status(200).json({
+        fevorateProducts: data
+      })
+    } else {
+      if (data) {
+        res.status(200).json({
+          fevorateProducts: data
+        })
+      }
     }
   } catch (err) {
 
