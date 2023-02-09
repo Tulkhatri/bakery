@@ -305,8 +305,10 @@ input:focus:invalid {
   justify-content: space-between;
 }
 
-.fevorateCard_close {
+.favoriteCard_close {
   padding: 0 4px;
+  background-color: red;
+  color: rgb(255, 255, 255);
 }
 
 .fevorateCard_data {
@@ -314,7 +316,10 @@ input:focus:invalid {
   opacity: 0.7;
   cursor: pointer;
 }
-
+.favorite_count{
+  background-color: white;
+  color: red;
+}
 /* profile page */
 .profile_page {
   padding: 20px 0px;

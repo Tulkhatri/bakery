@@ -68,7 +68,6 @@ const Card = (props) => {
         } catch (err) {
             message.error(err, [2])
         }
-
     }
     const productDetails = () => {
         navigate(props.email === 'tulkhatri01@gmail.com' ? '' : '/productDetails', { state: props.items })
@@ -95,12 +94,13 @@ const Card = (props) => {
                 message.error(data.error, [2])
             } else if (response.status === 200) {
                 message.success(data.msg, [1])
+                // props.favData()
+                props.fetchFavorite()
             }
         } catch (err) {
             message.error(err, [2])
         }
     }
-
     const removeFavorite = async () => {
         console.log(props.items._id)
         const requestOptions = {
@@ -122,7 +122,6 @@ const Card = (props) => {
         } catch (err) {
             message.error(err, [2])
         }
-
     }
     return (
         <>

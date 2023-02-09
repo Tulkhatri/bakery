@@ -1,43 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import axios from "axios";
 import { useSelector } from 'react-redux'
 import { faHeart, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useNavigate } from 'react-router-dom';
-const FavoriteCard = () => {
+const FavoriteCard = (props) => {
     const navigate = useNavigate();
-    const { _id,email } = useSelector(state => state.user)
-    const [validItems, setValidItems] = useState([])
-    const [favoriteCount, setfavoriteCount] = useState(0)
-    const fetchProducts = () => {
-
-        axios.get(`http://localhost:3005/favoriteProducts?userId=${_id}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
-            try {
-                setValidItems(res.data.favoriteProducts)
-                setfavoriteCount(res.data.totalFavoriteProducts)
-            } catch (err) {
-
-            }
-
-        })
-    }
-
+    const { email } = useSelector(state => state.user)
     useEffect(() => {
-        email && fetchProducts()
+        email && props.fetchFavorite()
     }, [])
-    const [favoriteDisplay, setfavoriteDisplay] = useState(email? "block":"none")
+    const [favoriteDisplay, setfavoriteDisplay] = useState(email ? "block" : "none")
     const coloseFavorite = () => {
         setfavoriteDisplay("none")
     }
+    console.log(props.favoriteCount)
     return (
         <>
-            <div className='fevorateCard' style={{ display: favoriteDisplay }}>
+            <div className='fevorateCard' style={{ display: props.favoriteCount ? favoriteDisplay : "none" }}>
                 <div className='fevorateCard_title'>
-
-                    <div >Favorite Items {favoriteCount}</div>
-                    <div onClick={() => coloseFavorite()} className='fevorateCard_close'><FontAwesomeIcon icon={faClose} /></div>
+                    <div>Favorite Items {props.favoriteCount}</div>
+                    <div onClick={() => coloseFavorite()} className='favoriteCard_close'><FontAwesomeIcon icon={faClose} /></div>
                 </div>
-                {validItems.map(items => <div onClick={() => navigate("/favoriteProducts")} className='fevorateCard_data' >
+                {props.favoriteItems.map(items => <div onClick={() => navigate("/favoriteProducts")} className='fevorateCard_data' >
                     <FontAwesomeIcon icon={faHeart} id="favorate_icon_Redcolor" />
                     {" " + items.name}
                 </div>)}
