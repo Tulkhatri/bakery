@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { message } from 'antd';
 const PaymentMethod = () => {
   const { _id } = useSelector(state => state.user);
   const { state } = useLocation();
@@ -20,12 +21,12 @@ const PaymentMethod = () => {
       const response = await fetch('http://localhost:3005/orderProducts', requestOptions)
       const data = await response.json()
       if (response.status === 409 && data.error) {
-        alert(data.error)
+        message.error(data.error, [2])
       } else if (response.status === 200) {
-        alert(data.msg)
+        message.success(data.msg, [1])
       }
     } catch (err) {
-      alert(err);
+      message.error(err, [2])
     }
   }
   return (

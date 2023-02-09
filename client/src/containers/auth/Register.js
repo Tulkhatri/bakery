@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 const SignupSchema = Yup.object().shape({
     name: Yup.string()
         .required(<FontAwesomeIcon icon={faTriangleExclamation} className='register_icon_warning' />)
@@ -66,14 +67,14 @@ const Register = () => {
                         const data = await response.json()
 
                         if (response.status === 409 && data.error) {
-                            alert(data.error)
+                            message.error(data.error, [2])
                         } else if (response.status === 200) {
-                            alert(data.msg)
+                            message.success(data.msg, [1])
                             navigate('/login');
                         }
                         // resetForm({ values: '' }); for blank form
                     } catch (err) {
-                        alert(err);
+                        message.error(err, [2])
                     }
                 }}
             >

@@ -6,5 +6,5 @@ const orderProductsSchema = new mongoose.Schema({
     photo: { type: String },
     userId: { type: String },
     color: { type: String, default: "red" },
-}, { collection: 'fevorateProducts' });
-module.exports = mongoose.model('fevorateProducts', orderProductsSchema)
+}, { collection: 'favoriteProducts' });
+module.exports = mongoose.model('favoriteProducts', orderProductsSchema)

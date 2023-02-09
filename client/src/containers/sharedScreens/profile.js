@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { message } from 'antd';
 import axios from "axios";
 const Profile = () => {
     const { _id } = useSelector(State => State.user)
@@ -19,6 +20,9 @@ const Profile = () => {
         };
         const res = await fetch('http://localhost:3005/profile', requestOptions);
         const data = await res.json()
+        if(data){
+            message.success(data.msg, [1])
+        }
 
     }
     const fetchUser = () => {
@@ -44,7 +48,7 @@ const Profile = () => {
                 </div>
                 <div className='profile_name'>{userDetails.name}</div>
                 <div className='profile_email'>{userDetails.email}</div>
-                <button className="btn_save_profile" onClick={() =>file? saveImage():alert("please Select the image")}>Save</button>
+                <button className="btn_save_profile" onClick={() =>file? saveImage():message.error("Please Select the image", [2])}>Save</button>
                 {/* {JSON.stringify(userDetails)} */}
             </div>
 

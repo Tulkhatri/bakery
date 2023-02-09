@@ -8,15 +8,15 @@ const FavoriteProducts = () => {
     const [validItems, setValidItems] = useState([])
     const fetchProducts = (page, size) => {
 
-        axios.get(`http://localhost:3005/fevorateProducts?userId=${_id}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
-            setValidItems(res.data.fevorateProducts)
+        axios.get(`http://localhost:3005/favoriteProducts?userId=${_id}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
+            setValidItems(res.data.favoriteProducts)
         })
     }
    
     useEffect(() => {
         fetchProducts()
     }, [])
-    console.log(validItems)
+    
     return (
         <>
             <div>Favorite Products</div>

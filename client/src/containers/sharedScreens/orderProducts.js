@@ -16,7 +16,6 @@ const OrderProducts = () => {
         })
     }
     const changeStatus=(status,productId)=>{
-        alert(status+"  "+productId)
         const statusDetails={
             status,
             id:productId,

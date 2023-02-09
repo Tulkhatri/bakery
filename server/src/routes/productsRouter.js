@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Products = require('../models/products')
 const OrderProducts = require('../models/orderProducts')
-const FevorateProducts = require('../models/fevorateProducts')
+const FavoriteProducts = require('../models/favoriteProducts')
 const jwt = require('jsonwebtoken');
 const multer = require('multer')
 
@@ -72,23 +72,22 @@ router.delete('/products', async (req, res) => {
 
   }
 });
-router.delete('/fevorateProducts', async (req, res) => {
+router.delete('/favoriteProducts', async (req, res) => {
   try {
     if (req.query.userId) {
-    const data = await FevorateProducts.findByIdAndDelete(req.body._id)
-    if (data) {
-      res.status(200).json({ msg: "Fevorate is removed" })
-    } else { res.json({ msg: "Something is worong" }) }
-  }
+      const data = await FavoriteProducts.findByIdAndDelete(req.body._id)
+      if (data) {
+        res.status(200).json({ msg: "Favorite is removed" })
+      } else { res.json({ msg: "Something is worong" }) }
+    }
   } catch (err) {
 
-  
-}
+
+  }
 });
 
 const tokenValidator = (req, res, next) => {//jun jun route lai protect garna man xa tyo route ma yo function pathaidine product ma pathayeko jasari product ma chahi pathauna naparla yo just example ko lagi matra
   const token = (req.headers.authorization.split(" ")[1])
-  // console.log(req.headers.authorization.split(" ")[1]) just test
   jwt.verify(token, process.env.SECRET_TOKEN, function (err, decoded) {
     if (err) return res.sendStatus(403)
     if (decoded) next()
@@ -123,11 +122,11 @@ router.post('/orderProducts', async (req, res) => {
   }
 });
 
-router.post('/fevorateProducts', async (req, res) => {
+router.post('/favoriteProducts', async (req, res) => {
   try {
-    const fevorateProducts = await FevorateProducts.create(req.body)
-    if (fevorateProducts) {
-      res.json({ msg: 'Fevorate Items is added' });
+    const favoriteProducts = await FavoriteProducts.create(req.body)
+    if (favoriteProducts) {
+      res.json({ msg: 'favorite Items is added' });
     } else {
       res.json({ msg: 'something went worng' });
     }
@@ -136,20 +135,15 @@ router.post('/fevorateProducts', async (req, res) => {
   }
 });
 
-router.get('/fevorateProducts', async (req, res) => {
+router.get('/favoriteProducts', async (req, res) => {
   try {
-    const data = await FevorateProducts.find()
+    const totalFavoriteProducts = await FavoriteProducts.find({ "userId": req.query.userId })
+    const data = await FavoriteProducts.find({ "userId": req.query.userId })
     if (req.query.userId) {
-      const data = await FevorateProducts.find({ "userId": req.query.userId })
       res.status(200).json({
-        fevorateProducts: data
+        favoriteProducts: data,
+        totalFavoriteProducts: totalFavoriteProducts.length
       })
-    } else {
-      if (data) {
-        res.status(200).json({
-          fevorateProducts: data
-        })
-      }
     }
   } catch (err) {
 
@@ -158,7 +152,7 @@ router.get('/fevorateProducts', async (req, res) => {
 
 router.patch('/orderProducts/status', async (req, res) => {
   try {
-    const orderProducts = await OrderProducts.findByIdAndUpdate(req.body.id,{"orderStatus":req.body.status})
+    const orderProducts = await OrderProducts.findByIdAndUpdate(req.body.id, { "orderStatus": req.body.status })
     if (orderProducts) {
       res.json({ msg: 'Order successful' });
     } else {

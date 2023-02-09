@@ -17,7 +17,20 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage: storage })
 router.post('/profile', upload.single('avatar'), async (req, res, next) => {
+  try{
   const data = await Users.findByIdAndUpdate(req.body._id, { avatar: req.file.filename })//imageName lai update garne but req.file.filename ma j aauxa tehi banaune
+  if (data) {
+    res.status(200).json({
+      userDetails: data,
+      msg: 'Profile updated'
+    })
+  } else {
+    res.status(500).json({ msg: 'Something is wrong' });
+  }
+
+} catch (err) {
+  res.status(409).json({ msg: 'Error' });
+}
 })
 
 router.get("/user/:id", async (req, res) => {
@@ -47,12 +60,12 @@ router.post('/register', async (req, res) => {
         req.body.password = hash
         const userData = Users.create(req.body);
         if (userData) {
-          res.json({ msg: 'user is added' });
+          res.json({ msg: 'Account is created' });
         } else {
           res.json({ msg: 'something went worng' });
         }
       } else {
-        res.status(409).json({ error: 'user already exists' });
+        res.status(409).json({ error: 'Email already exists' });
       }
     });
   } catch (err) {
@@ -70,14 +83,14 @@ router.post('/login', async (req, res) => {
       if (email && isMatched) {
         const { password, ...refactoredUserObj } = user
         res.status(200).json({
-          msg: 'logged in successfully',
+          msg: 'Logged in success',
           userList: refactoredUserObj,//if we needed all data of user we just send user and not need to lean()but when we want to refactor user and take user without any one or mor field like password we need to remove internal cache by using lean()for porpor display
            sendEmail: email
         })
       }
       else {
         res.status(401).json({
-          errorMsg: 'unauthorized user'
+          errorMsg: 'Unauthorized user'
         })
       }
     }
@@ -87,7 +100,7 @@ router.post('/login', async (req, res) => {
   }
   else {
     res.status(401).json({
-      errorMsg: 'user does not exist'
+      errorMsg: 'User does not exist'
     })
   }
 

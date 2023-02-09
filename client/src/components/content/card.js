@@ -7,8 +7,9 @@ import EditForm from '../endt/editForm';
 import CustomForm from '../form/customForm';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
+import { message } from 'antd';
 const Card = (props) => {
-    const {email, _id } = useSelector(state => state.user);
+    const { email, _id } = useSelector(state => state.user);
     const navigate = useNavigate();
     const postRequest = async (values) => {
         const requestOptions = {
@@ -21,19 +22,15 @@ const Card = (props) => {
             const data = await response.json()
 
             if (response.status === 409 && data.error) {
-                alert(data.error)
+                message.error(data.error, [2])
             } else if (response.status === 200) {
-                alert(data.msg)
+                message.success(data.msg, [1])
                 props.fetchProducts();
-                // navigate('/');
             }
-            // resetForm({ values: '' }); for blank form
         } catch (err) {
-            alert(err);
+            message.error(err, [2])
         }
     }
-
-
     const [inputFields, setInputFields] = useState([])
     const [addButton, setAddButton] = useState([])
     const addProduct = () => {
@@ -51,9 +48,7 @@ const Card = (props) => {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-
     const deleteProduct = async () => {
-        //fetch
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
@@ -66,14 +61,12 @@ const Card = (props) => {
                 props.fetchProducts();
             }
             if (response.status === 409 && data.error) {
-                alert(data.error)
+                message.error(data.error, [2])
             } else if (response.status === 200) {
-                alert(data.msg)
-                // navigate('/');
+                message.success(data.msg, [1])
             }
-            // resetForm({ values: '' }); for blank form
         } catch (err) {
-            alert(err);
+            message.error(err, [2])
         }
 
     }
@@ -81,15 +74,14 @@ const Card = (props) => {
         navigate(props.email === 'tulkhatri01@gmail.com' ? '' : '/productDetails', { state: props.items })
         console.log(props.items)
     }
-    const fevorateProducts = {
+    const favoriteProducts = {
         name: props.items.name,
         price: props.items.price,
         photo: props.items.photo,
         description: props.items.description,
     }
     const favoriteItems = async (values) => {
-
-        values = fevorateProducts
+        values = favoriteProducts
         values.userId = _id
         const requestOptions = {
             method: 'POST',
@@ -97,21 +89,19 @@ const Card = (props) => {
             body: JSON.stringify(values),
         };
         try {
-            const response = await fetch('http://localhost:3005/fevorateProducts', requestOptions)
+            const response = await fetch('http://localhost:3005/favoriteProducts', requestOptions)
             const data = await response.json()
             if (response.status === 409 && data.error) {
-                alert(data.error)
+                message.error(data.error, [2])
             } else if (response.status === 200) {
-
-                alert(data.msg)
-
+                message.success(data.msg, [1])
             }
         } catch (err) {
-            alert(err);
+            message.error(err, [2])
         }
     }
 
-    const removeFevorate = async () => {
+    const removeFavorite = async () => {
         console.log(props.items._id)
         const requestOptions = {
             method: 'DELETE',
@@ -119,35 +109,29 @@ const Card = (props) => {
             body: JSON.stringify({ _id: props.items._id }),
         };
         try {
-            const response = await fetch(`http://localhost:3005/fevorateProducts?userId=${_id}`, requestOptions)
+            const response = await fetch(`http://localhost:3005/favoriteProducts?userId=${_id}`, requestOptions)
             const data = await response.json()
             if (response.status === 200) {
                 props.fetchProducts();
             }
             if (response.status === 409 && data.error) {
-                alert(data.error)
+                message.error(data.error, [2])
             } else if (response.status === 200) {
-                alert(data.msg)
-                // navigate('/');
+                message.success(data.msg, [1])
             }
-            // resetForm({ values: '' }); for blank form
         } catch (err) {
-            alert(err);
+            message.error(err, [2])
         }
 
     }
-
-
     return (
         <>
             <Modal title="" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
                 {props.email === 'tulkhatri01@gmail.com' ? <EditForm isAdminEdit={true} items={props.items} inputFields={inputFields} addButton={addButton} addProduct={addProduct} postRequest={postRequest} /> : <CustomForm inputFields={inputFields} />}
             </Modal>
             <div>
-                <FontAwesomeIcon icon={faHeart} className='favorite_icon' id={props.items.color && "favorate_icon_Redcolor"} onClick={() =>email? props.items.color ? removeFevorate() : favoriteItems():navigate("/login")} />
+                <FontAwesomeIcon icon={faHeart} className='favorite_icon' id={props.items.color && "favorate_icon_Redcolor"} onClick={() => email ? props.items.color ? removeFavorite() : favoriteItems() : navigate("/login")} />
                 <div className="card_view" onClick={() => productDetails()}>
-
-
                     <div className="card_image">
                         {props.items.photo && <img src={require(`../../uploads/product/${props.items.photo}`)} alt='Loading' />}
                     </div>

@@ -45,7 +45,7 @@ const UserScreens = () => {
   return (
     <Routes>
       <Route exact path='/' element={<UserDashboard />} />
-      <Route exact path='/fevorateProducts' element={<FavoriteProducts />} />
+      <Route exact path='/favoriteProducts' element={<FavoriteProducts />} />
       <Route path='/productDetails' element={<ProductDetails />} />
       <Route path='/payment' element={<PaymentMethod />} />
       <Route exact path='/profile' element={<Profile />} />
@@ -62,7 +62,7 @@ const AdminScreens = () => {
       <Route exact path='/products' element={<Products />} />
       <Route exact path='/profile' element={<Profile />} />
       <Route exact path='/orderProducts' element={<OrderProducts />} />
-      <Route exact path='/fevorateProducts' element={<FavoriteProducts />} />
+      <Route exact path='/favoriteProducts' element={<FavoriteProducts />} />
       <Route path='*' element={<PageNotFound />} />
     </Routes>
   );

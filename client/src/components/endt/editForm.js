@@ -1,6 +1,7 @@
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
 import * as Yup from 'yup';
+import { message } from 'antd';
 const usersSchema = Yup.object().shape({
 });
 const EditForm = (props) => {
@@ -13,9 +14,6 @@ const EditForm = (props) => {
                     initialValues={props.isAdminEdit ? props.items : {}}
                     validationSchema={usersSchema}
                     onSubmit={async (values, { resetForm }) => {//reset form is a inbuild function
-                        // props.postRequest(values);
-                        // console.log(values)
-
                         const formData = new FormData()
                         formData.append('name', values.name)
                         formData.append('price', values.price)
@@ -31,20 +29,15 @@ const EditForm = (props) => {
                             const data = await response.json()
 
                             if (response.status === 409 && data.error) {
-                                alert(data.error)
+                                message.error(data.error, [2])
                             } else if (response.status === 200) {
-                                alert(data.msg)
+                                message.success(data.msg, [1])
                                 // navigate('/');
                             }
                             // resetForm({ values: '' }); for blank form
                         } catch (err) {
-                            alert(err);
+                            message.error(err, [2])
                         }
-
-
-
-
-
                     }}
                 >
                     {({ errors, touched }) => (
@@ -65,9 +58,6 @@ const EditForm = (props) => {
                                 {/* <FontAwesomeIcon icon={faEdit} className='edit_profile' /> */}
                                 <input type='file' onChange={(e) => setFile(e.target.files[0])} className=''></input>
                             </div>
-
-
-
 
                             {/* <Field name="photo">
                                 {({

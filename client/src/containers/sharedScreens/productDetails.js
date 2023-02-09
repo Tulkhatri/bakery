@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { message } from 'antd';
 const ProductDetails = () => {
     const { email, token } = useSelector(state => state.user)
     const { state } = useLocation();
@@ -28,6 +29,7 @@ const ProductDetails = () => {
             {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}>  */}
             <div className="button_submit_buynow">
             <button className="button_submit" onClick={()=>payment()}>Buy Now</button>
+            <button  onClick={()=>message.success("Added items in your cart", [1])}>Add to cart</button>
             </div>
             {/* </Link> */}
             </div>

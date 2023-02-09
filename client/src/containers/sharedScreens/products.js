@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import Card from '../../components/content/card';
 import { Pagination } from 'antd';
 import axios from "axios";
-import FevorateCard from '../sharedScreens/favoriteCard';
+import FavoriteCard from '../sharedScreens/favoriteCard';
 const Products = () => {
     const { email } = useSelector(state => state.user)
     const [validItems, setValidItems] = useState([])
@@ -22,8 +22,7 @@ const Products = () => {
 
     return (
         <>
-            <FevorateCard fetchProducts={fetchProducts} />
-
+            <FavoriteCard />
             <div className='admin_drawer'>
             </div>
             <div className="card_main_div">

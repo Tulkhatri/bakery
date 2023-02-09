@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEyeSlash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { addUserDetails } from '../../redux/actions/userAction'
 import { useDispatch } from 'react-redux';
+import { message } from 'antd';
 const usersSchema = Yup.object().shape({
     email: Yup.string()
         .email(<FontAwesomeIcon icon={faTriangleExclamation} className='register_icon_warning' />)
@@ -46,12 +47,13 @@ const Login = () => {
                         const data = await res.json()
                         if (res.status === 200) {
                             dispatch(addUserDetails(data.userList))
+                            message.success(data.msg, [1])
                             // navigate('/home');role/ email anusar automatic navigate hunxa
                             navigate(data.sendEmail === 'tulkhatri01@gmail.com' ? '/' : '/')// first mai / ma kam gareko vaye navigate / garnuparne thiyena role/email anusar navigate hunethiyo but yeha /login ma kam vayeko le / ma navigate ganrupareko
                         } else {
-                            alert(data.errorMsg)
+                            message.error(data.errorMsg, [2])
+                           
                         }
-                        console.log(data);
                         // resetForm({ values: '' })
                     }}
                 >
