@@ -95,13 +95,39 @@ const tokenValidator = (req, res, next) => {//jun jun route lai protect garna ma
 }
 
 // router.get("/products", tokenValidator, async (req, res) => {
+// router.get("/products", async (req, res) => {
+//   try {
+//     const totalProductLength = await Products.find()
+//     const data = await Products.find().limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
+//     if (data) {
+//       res.status(200).json({
+//         products: data,
+//         totalProudctCount: totalProductLength.length
+//       })
+//     }
+//   } catch (err) {
+
+//   }
+// });
+
 router.get("/products", async (req, res) => {
   try {
+    const {q}=req.query;
+
+
+     const search = (validItems) => {
+        return validItems.filter((items) =>
+            items.name.toLowerCase().includes(q.toLowerCase()) ||
+            items.price.toLowerCase().includes(q.toLowerCase())
+        )
+    }
+
+
     const totalProductLength = await Products.find()
-    const data = await Products.find().limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
+    const data = await Products.find()
     if (data) {
       res.status(200).json({
-        products: data,
+        products: search(data),
         totalProudctCount: totalProductLength.length
       })
     }
@@ -109,6 +135,9 @@ router.get("/products", async (req, res) => {
 
   }
 });
+
+
+
 router.post('/orderProducts', async (req, res) => {
   try {
     const orderProducts = await OrderProducts.create(req.body)
