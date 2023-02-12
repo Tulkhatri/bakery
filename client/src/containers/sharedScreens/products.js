@@ -9,7 +9,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Products = () => {
     const [query, setQuery] = useState("")
-    console.log(query)
     const { _id, email } = useSelector(state => state.user)
     const [validItems, setValidItems] = useState([])
     const [productCount, setProductCount] = useState(0)
@@ -34,6 +33,14 @@ const Products = () => {
     useEffect(() => {
         fetchProducts()
     }, [])
+
+    const search = (validItems) => {
+        return validItems.filter((items) =>
+            items.name.toLowerCase().includes(query.toLowerCase()) ||
+            items.price.toLowerCase().includes(query.toLowerCase())
+        )
+    }
+
     return (
         <>
             <FavoriteCard fetchFavorite={fetchFavorite} favoriteItems={favoriteItems} favoriteCount={favoriteCount} />
@@ -46,10 +53,10 @@ const Products = () => {
                     />
                     <FontAwesomeIcon icon={faSearch} className='search_icon' />
                 </div>
-                {validItems.filter(items => items.name.toLowerCase().includes(query.toLowerCase())
-                ).map((items) => (
-                    <Card items={items} email={email} fetchProducts={fetchProducts} fetchFavorite={fetchFavorite} />
-                ))}
+                {search(validItems).map(items => {
+                    return <Card items={items} email={email} fetchProducts={fetchProducts} fetchFavorite={fetchFavorite} />
+                })}
+
             </div>
             <div className='pagination'>
                 <Pagination total={productCount} onChange={(page, size) => fetchProducts(page, size)} />
