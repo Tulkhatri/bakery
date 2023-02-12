@@ -18,7 +18,6 @@ const upload = multer({ storage: storage })
 
 router.post('/products', upload.single('photo'), async (req, res, next) => {
 
-
   const body = req.body;
 
   const products = new Products({
@@ -26,7 +25,6 @@ router.post('/products', upload.single('photo'), async (req, res, next) => {
     price: body.price,
     image: body.image,
     photo: req.file.filename,
-    // req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,//this is optional for photo path
   });
   products
     .save()
@@ -35,20 +33,6 @@ router.post('/products', upload.single('photo'), async (req, res, next) => {
   } else {
     res.json({ msg: 'something went worng' });
   }
-  // .catch((err) => console.log(err.message));
-
-
-  // try {
-  //   const products = await Products.create(req.body);
-
-  //   if (products) {
-  //     res.json({ msg: 'Product is added' });
-  //   } else {
-  //     res.json({ msg: 'something went worng' });
-  //   }
-  // } catch (err) {
-
-  // }
 });
 
 router.put('/products', async (req, res) => {
@@ -95,48 +79,37 @@ const tokenValidator = (req, res, next) => {//jun jun route lai protect garna ma
 }
 
 // router.get("/products", tokenValidator, async (req, res) => {
-// router.get("/products", async (req, res) => {
-//   try {
-//     const totalProductLength = await Products.find()
-//     const data = await Products.find().limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
-//     if (data) {
-//       res.status(200).json({
-//         products: data,
-//         totalProudctCount: totalProductLength.length
-//       })
-//     }
-//   } catch (err) {
-
-//   }
-// });
-
 router.get("/products", async (req, res) => {
+
+  const { qSearch } = req.query;
+  const search = (validItems) => {
+    return validItems.filter((items) =>
+      items.name.toLowerCase().includes(qSearch.toLowerCase()) ||
+      items.price.toLowerCase().includes(qSearch.toLowerCase())
+    )
+  }
+
   try {
-    const {q}=req.query;
-
-
-     const search = (validItems) => {
-        return validItems.filter((items) =>
-            items.name.toLowerCase().includes(q.toLowerCase()) ||
-            items.price.toLowerCase().includes(q.toLowerCase())
-        )
-    }
-
-
-    const totalProductLength = await Products.find()
-    const data = await Products.find()
-    if (data) {
-      res.status(200).json({
+    if (qSearch.length > 0) {
+      const data = await Products.find()
+      res.json({
         products: search(data),
-        totalProudctCount: totalProductLength.length
       })
+    } else {
+
+      const totalProductLength = await Products.find()
+      const data = await Products.find().limit(req.query.size).skip(req.query.size * req.query.page - req.query.size)
+      if (data) {
+        res.status(200).json({
+          products: data,
+          totalProudctCount: totalProductLength.length
+        })
+      }
     }
   } catch (err) {
 
   }
 });
-
-
 
 router.post('/orderProducts', async (req, res) => {
   try {
