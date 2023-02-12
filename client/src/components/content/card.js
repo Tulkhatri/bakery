@@ -71,7 +71,6 @@ const Card = (props) => {
     }
     const productDetails = () => {
         navigate(props.email === 'tulkhatri01@gmail.com' ? '' : '/productDetails', { state: props.items })
-        console.log(props.items)
     }
     const favoriteProducts = {
         name: props.items.name,
@@ -102,7 +101,6 @@ const Card = (props) => {
         }
     }
     const removeFavorite = async () => {
-        console.log(props.items._id)
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },

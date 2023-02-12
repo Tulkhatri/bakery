@@ -5,7 +5,11 @@ import Card from '../../components/content/card';
 import { Pagination } from 'antd';
 import axios from "axios";
 import FavoriteCard from '../sharedScreens/favoriteCard';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const Products = () => {
+    const [query, setQuery] = useState("")
+    console.log(query)
     const { _id, email } = useSelector(state => state.user)
     const [validItems, setValidItems] = useState([])
     const [productCount, setProductCount] = useState(0)
@@ -36,14 +40,19 @@ const Products = () => {
             <div className='admin_drawer'>
             </div>
             <div className="card_main_div">
-                {validItems.map((items) => {
-                    return <Card items={items} email={email} fetchProducts={fetchProducts} fetchFavorite={fetchFavorite} />
-                }
-                )}
+                <div className='search'>
+                    <input type="search" className='search_box' placeholder='Search'
+                        onChange={(e) => setQuery(e.target.value)}
+                    />
+                    <FontAwesomeIcon icon={faSearch} className='search_icon' />
+                </div>
+                {validItems.filter(items => items.name.toLowerCase().includes(query.toLowerCase())
+                ).map((items) => (
+                    <Card items={items} email={email} fetchProducts={fetchProducts} fetchFavorite={fetchFavorite} />
+                ))}
             </div>
             <div className='pagination'>
                 <Pagination total={productCount} onChange={(page, size) => fetchProducts(page, size)} />
-                {console.log(productCount)}
             </div>
         </>
     );

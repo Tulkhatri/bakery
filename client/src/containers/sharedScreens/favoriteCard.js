@@ -13,7 +13,6 @@ const FavoriteCard = (props) => {
     const coloseFavorite = () => {
         setfavoriteDisplay("none")
     }
-    console.log(props.favoriteCount)
     return (
         <>
             <div className='fevorateCard' style={{ display: props.favoriteCount ? favoriteDisplay : "none" }}>

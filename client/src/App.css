@@ -41,6 +41,44 @@ a {
   font-family: 'Raleway';
 }
 
+.search {
+  margin-top: 30px;
+  display: flex;
+  width: 100%;
+  height: 40px;
+  
+}
+
+.search_icon {
+  position: absolute;
+  padding: 12px 20px;
+  margin-left: 71.1%;
+  /* transform: translateX(-50%); */
+  border: 2px solid rgb(215, 209, 209);
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+  background-color: rgb(248, 247, 247);
+  font-size: 1.1rem;
+
+
+}
+
+.search_icon:hover {
+  cursor: pointer;
+  background-color: rgb(238, 236, 236);
+}
+
+.search_box {
+  width: 100%;
+  height: 45px;
+  padding: 10px 20px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border-radius: 40px;
+  border: 2px solid rgb(215, 209, 209);
+  background-color: ffffff;
+  font-size: 1.1rem;
+}
 .end {
   margin-top: 15px;
   background-color: rgb(251, 133, 0);
@@ -316,10 +354,12 @@ input:focus:invalid {
   opacity: 0.7;
   cursor: pointer;
 }
-.favorite_count{
+
+.favorite_count {
   background-color: white;
   color: red;
 }
+
 /* profile page */
 .profile_page {
   padding: 20px 0px;

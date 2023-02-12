@@ -48,7 +48,7 @@ const Profile = () => {
                 </div>
                 <div className='profile_name'>{userDetails.name}</div>
                 <div className='profile_email'>{userDetails.email}</div>
-                <button className="btn_save_profile" onClick={() =>file? saveImage():message.error("Please Select the image", [2])}>Save</button>
+                <button className="btn_save_profile" onClick={() =>file? saveImage():message.error("Please choose the image", [2])}>Save</button>
                 {/* {JSON.stringify(userDetails)} */}
             </div>
 

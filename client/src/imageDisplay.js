@@ -11,7 +11,6 @@ const ImageDisplay=()=>{
           
         });
     }, []);
-    console.log(persons)
     return(
         <>
         <h1>Image Display</h1>
@@ -19,7 +18,6 @@ const ImageDisplay=()=>{
         {persons.map((person) => (
             <div key={person.id}>
            { person.photo && <img src={require(`../../server/uploads/${person.photo}`)} alt='profile-pic'style={{width:"100 px", height:"100 px"}} />}
-           {console.log(person.photo)}
             <h4>Name:{person.name}</h4>
             <h4>Number:{person.number}</h4>
           </div>
