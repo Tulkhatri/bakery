@@ -10,8 +10,8 @@ const OrderProducts = () => {
     const [orderProduct, setOrderProducts] = useState([])
     const [orderProductId, setOrderProductsId] = useState({})
     const fetchOrderProducts = () => {
-        const apiReqAdmin = `http://localhost:3005/orderProducts`
-        const apiReqUser = `http://localhost:3005/orderProducts?userId=${_id}`
+        const apiReqAdmin = `http://localhost:3005/orderProducts?qSearch=${query}`
+        const apiReqUser = `http://localhost:3005/orderProducts?userId=${_id}&qSearch=${query}`
         axios.get(email === 'tulkhatri01@gmail.com' ? apiReqAdmin : apiReqUser).then((res) => {
             setOrderProducts(res.data.orderProducts)
 
@@ -27,16 +27,16 @@ const OrderProducts = () => {
     }
     useEffect(() => {
         fetchOrderProducts()
-    }, [])
-    const keys=["name","price","orderStatus"]
-    const search = (orderProduct) => {
-        return orderProduct.filter((items) =>
-            // items.name.toLowerCase().includes(query.toLowerCase()) ||
-            // items.price.toLowerCase().includes(query.toLowerCase())||
-            // items.orderStatus.toLowerCase().includes(query.toLowerCase())
-            keys.some((key)=>items[key].toLowerCase().includes(query.toLowerCase()))//by using array we can write code in single line
-        )
-    }
+    }, [query])
+    // const keys=["name","price","orderStatus"]//for front end search 
+    // const search = (orderProduct) => {
+    //     return orderProduct.filter((items) =>
+    //         // items.name.toLowerCase().includes(query.toLowerCase()) ||
+    //         // items.price.toLowerCase().includes(query.toLowerCase())||
+    //         // items.orderStatus.toLowerCase().includes(query.toLowerCase())
+    //         keys.some((key)=>items[key].toLowerCase().includes(query.toLowerCase()))//by using array we can write code in single line
+    //     )
+    // }
     return (
         <>
             <div className='search'>
@@ -53,10 +53,7 @@ const OrderProducts = () => {
                     <th>Action</th>
 
                 </tr>
-
-
-
-                {search(orderProduct).map((items) => {
+                {orderProduct.map((items) => {
                     return (
                         <>
                             <tr>

@@ -14,7 +14,7 @@ const Products = () => {
     const [productCount, setProductCount] = useState(0)
     const fetchProducts = (page, size) => {
 
-        axios.get(`http://localhost:3005/products/?page=${page || 1}&size=${size || 10}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
+        axios.get(`http://localhost:3005/products/?page=${page || 1}&size=${size || 10}&qSearch=${query}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
             setValidItems(res.data.products)
             setProductCount(res.data.totalProudctCount)
         })
@@ -30,16 +30,10 @@ const Products = () => {
             }
         })
     }
+
     useEffect(() => {
         fetchProducts()
-    }, [])
-
-    const search = (validItems) => {
-        return validItems.filter((items) =>
-            items.name.toLowerCase().includes(query.toLowerCase()) ||
-            items.price.toLowerCase().includes(query.toLowerCase())
-        )
-    }
+    }, [query])
 
     return (
         <>
@@ -53,7 +47,7 @@ const Products = () => {
                     />
                     <FontAwesomeIcon icon={faSearch} className='search_icon' />
                 </div>
-                {search(validItems).map(items => {
+                {validItems.map(items => {
                     return <Card items={items} email={email} fetchProducts={fetchProducts} fetchFavorite={fetchFavorite} />
                 })}
 

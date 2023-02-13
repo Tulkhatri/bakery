@@ -166,17 +166,28 @@ router.patch('/orderProducts/status', async (req, res) => {
 });
 
 router.get('/orderProducts', async (req, res) => {
+
+  const { qSearch } = req.query;
+  const keys = ["name", "price", "orderStatus"]
+  const search = (validItems) => {
+    return validItems.filter((items) =>
+      // items.name.toLowerCase().includes(qSearch.toLowerCase()) ||
+      // items.price.toLowerCase().includes(qSearch.toLowerCase())
+      keys.some((key) => items[key].toLowerCase().includes(qSearch.toLowerCase()))//by using array we can write code in single line
+
+    )
+  }
   try {
     const data = await OrderProducts.find()
     if (req.query.userId) {
       const data = await OrderProducts.find({ "userId": req.query.userId })
       res.status(200).json({
-        orderProducts: data
+        orderProducts: search(data)
       })
     } else {
       if (data) {
         res.status(200).json({
-          orderProducts: data
+          orderProducts: search(data)
         })
       }
     }

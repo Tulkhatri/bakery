@@ -1,3 +1,4 @@
+import '../../App.css'
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { message } from 'antd';
@@ -31,11 +32,14 @@ const PaymentMethod = () => {
   }
   return (
     <>
-      <div className="contentCss">
-        <h1> Payment</h1>
-        <Link to='/eSewa'> <button >eSewa</button></Link>
-        <Link to='/orderProducts'> <button onClick={() => conformPayment()}>Cash On Delivery</button></Link>
-        <div>{state.name}</div>
+      <div className="pamentPage">
+        <div className="pamentPage_name">{state.name}</div>
+        <div className="pamentPage_name">Total Amount Rs. {state.price}</div>
+        {/* <Link to='/eSewa'> <button >eSewa</button></Link> */}
+        <div >
+          <Link to='/orderProducts'> <button onClick={() => conformPayment()} className="button_submit_cash" >Cash On Delivery</button></Link>
+        </div>
+
       </div>
     </>
   );
