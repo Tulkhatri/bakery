@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { faMinus, faPlus, faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faRedo, faCartShopping, faMapMarker,faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { message } from 'antd';
 import '../../App.css'
@@ -55,7 +55,18 @@ const ProductDetails = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="product_page_delivery">Delivery option</div>
+                    <div className="product_page_delivery">
+                        <div>Delivery</div>
+                        <div className="delivery_loaction">
+                            <FontAwesomeIcon icon={faMapMarker} className="faMapMarker" />
+                            <div>Your Location ?</div>
+                            <button className="location_change">Change</button>
+                        </div>
+                        <div className="cash_on_delivery">
+                            <FontAwesomeIcon icon={faMoneyCheckDollar} className="faMapMarker" />
+                            <div>Cash on Delivery Available</div>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -63,7 +74,9 @@ const ProductDetails = () => {
                 {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}>  */}
                 <div className="button_submit_buynow">
                     <button className="button_submit" onClick={() => payment()}>Buy Now</button>
-                    <button onClick={() => message.success("Added items in your cart", [1])}>Add to cart</button>
+                    <button className="button_submit" onClick={() => message.success("Added items in your cart", [1])}>
+                        <FontAwesomeIcon icon={faCartShopping} onClick={counterR} />  Add to cart 
+                    </button>
                 </div>
                 {/* </Link> */}
             </div>

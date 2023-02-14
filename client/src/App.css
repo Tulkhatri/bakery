@@ -144,6 +144,7 @@ input:focus:invalid {
   padding: 10px 2px;
   width: 35%;
   margin-bottom: 15px;
+  margin: 10px;
 }
 
 .button_submit:hover {
@@ -151,13 +152,13 @@ input:focus:invalid {
   outline: none;
   border: none;
   cursor: pointer;
-  scale: 1.1;
+  scale: 1.05;
   transition: 0.5s;
 }
 
 .button_submit_buynow {
   margin-left: 50%;
-  transform: translateX(-20%);
+  transform: translateX(-40%);
   margin-top: 20px;
 }
 
@@ -423,6 +424,10 @@ input:focus:invalid {
   opacity: 50%;
 }
 
+.orderProductPage {
+  background-color: #fff;
+}
+
 table {
   margin-top: 5px;
   margin-left: 50%;
@@ -506,6 +511,7 @@ tr:nth-child(even) {
   font-size: 1.6rem;
   margin: 10px;
   font-weight: 600;
+  color: rgb(213, 115, 2);
 }
 
 .increment_decrement {
@@ -530,6 +536,10 @@ tr:nth-child(even) {
   font-size: 1.4rem;
 }
 
+.increment_decrement:hover {
+  cursor: pointer;
+}
+
 .product_details_name {
   background-color: rgb(241, 240, 239);
   width: 100%;
@@ -537,46 +547,73 @@ tr:nth-child(even) {
   color: rgb(213, 115, 2);
   font-size: 1.1rem;
 }
-.pamentPage {
+
+.paymentPage {
+  margin: 10px;
+  margin-left: 50%;
+  transform: translate(-50%);
   border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
-  height:500px;
-  background-color: #fff;
+  background-color: #ffffff;
 }
-.button_submit_cash{
+
+.button_submit_cash {
   font-size: 1.1rem;
   padding: 8px;
-  margin:5px;
+  margin: 5px;
   background-color: rgb(249, 105, 28);
   border-radius: 10px;
   border: none;
   color: #fff;
   font-weight: 500;
 }
-.button_submit_cash:hover{
+
+.button_submit_cash:hover {
   cursor: pointer;
   background-color: rgb(222, 80, 3);
   box-shadow: 1px 0 3px 1px rgb(162, 154, 154);
 }
-.pamentPage_name{
+
+.pamentPage_name {
   padding-bottom: 20px;
   color: rgb(213, 115, 2);
   font-size: 1.1rem;
 }
+
 .product_page_delivery {
   margin-top: 20px;
+  padding: 10px;
   display: flex;
-  align-items: center;
   flex-direction: column;
   width: 400px;
   height: 400px;
   background-color: rgb(241, 239, 236);
 }
 
+.delivery_loaction {
+  display: flex;
+}
+
+.faMapMarker {
+  padding: 5px;
+  color: rgb(32, 147, 248);
+}
+
+.location_change {
+  border: 1px solid rgb(32, 147, 248);
+  padding: 0 5px;
+  border-radius: 4px;
+  margin-left: 20px;
+}
+.location_change:hover {
+  cursor: pointer;
+}
+.cash_on_delivery{
+  display: flex;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

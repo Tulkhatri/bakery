@@ -1,4 +1,4 @@
-import './../../App.css'
+import '../../App.css'
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -39,6 +39,7 @@ const OrderProducts = () => {
     // }
     return (
         <>
+        <div className='orderProductPage'>
             <div className='search'>
                 <input type="search" className='search_box' placeholder='Search'
                     onChange={(e) => setQuery(e.target.value)}
@@ -70,6 +71,7 @@ const OrderProducts = () => {
                 })}
 
             </table>
+            </div>
         </>
     );
 }

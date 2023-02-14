@@ -32,7 +32,7 @@ const PaymentMethod = () => {
   }
   return (
     <>
-      <div className="pamentPage">
+      <div className="paymentPage">
         <div className="pamentPage_name">{state.name}</div>
         <div className="pamentPage_name">Total Amount Rs. {state.price}</div>
         {/* <Link to='/eSewa'> <button >eSewa</button></Link> */}
