@@ -43,7 +43,7 @@ body {
     height: 25vh;
     padding: 20px;
     background-color: #f4f6f9;
-    z-index: -100;
+    
 
 }
 
@@ -218,7 +218,7 @@ body {
     height: 25px;
     border-radius: 50%;
     padding: 30px 10px;
-    position: fixed;
+    position: absolute;
 
 }
 
@@ -238,6 +238,8 @@ body {
     display: none;
     padding: 10px;
     font-size: 2rem;
+    z-index: 10;
+    position: relative;
 
 }
 

@@ -7,8 +7,9 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const OrderProducts = () => {
     const [query, setQuery] = useState("")
-    const { _id, name, email, phoneNumber, address } = useSelector(state => state.user);
+    const { _id, email } = useSelector(state => state.user);
     const [orderProduct, setOrderProducts] = useState([])
+    const [userDetails, setUserDetails] = useState({})
     const fetchOrderProducts = () => {
         const apiReqAdmin = `http://localhost:3005/orderProducts?qSearch=${query}`
         const apiReqUser = `http://localhost:3005/orderProducts?userId=${_id}&qSearch=${query}`
@@ -31,10 +32,9 @@ const OrderProducts = () => {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
 
-    const showModal = () => {
-         axios.get(`http://localhost:3005/user/${_id}`).then((res) => {
-            // setUserDetails(res.data.userDetails)
-
+    const showModal = (userId) => {
+        axios.get(`http://localhost:3005/user/${userId}`).then((res) => {
+            setUserDetails(res.data.userDetails)
         })
         setOpen(true);
     };
@@ -61,10 +61,10 @@ const OrderProducts = () => {
                     // </Button>,
                 ]}
             >
-                <p>Name: {name}</p>
-                <p>Email: {email}</p>
-                <p>Phone Number: {phoneNumber}</p>
-                <p>Address: {address}</p>
+                <p>Name: {userDetails.name}</p>
+                <p>Email: {userDetails.email}</p>
+                <p>Phone Number: {userDetails.phoneNumber}</p>
+                <p>Address: {userDetails.address}</p>
             </Modal>
             <div className='orderProductPage'>
                 <div className='search'>
@@ -87,7 +87,7 @@ const OrderProducts = () => {
                             <>
                                 <tr>
                                     {email === 'tulkhatri01@gmail.com' && <span className='userId_table'>
-                                        <td onClick={showModal}>{items.userId}</td>
+                                        <td onClick={() => showModal(items.userId)}>{items.userId}</td>
                                     </span>}
                                     <td>{items.name}</td>
                                     <td>{items.price}</td>

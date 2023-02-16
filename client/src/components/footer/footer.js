@@ -1,4 +1,5 @@
 import '../header/navBar/style.css'
+import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <>
@@ -10,7 +11,7 @@ const Footer = () => {
                 </div>
                 <div className='footer_heading'>About us
                     <span>About Liverybakery.com</span>
-                    <span>Contact Us</span>
+                    <Link to='/contact'><span>Contact Us</span></Link>
                     <span>Digital Payments</span>
                 </div>
                 <div className='footer_heading'>Sell on Live Bakery

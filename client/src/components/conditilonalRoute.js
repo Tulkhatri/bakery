@@ -18,6 +18,7 @@ import ImageDisplay from '../imageDisplay';
 import Slideshow from './header/imageSlide/imageSlide';
 import Footer from './footer/footer';
 import FavoriteProducts from '../containers/sharedScreens/favoriteProducts';
+import ContactUs from '../containers/sharedScreens/conactUs';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
@@ -34,6 +35,7 @@ const AuthScreens = () => {
       <Route path='/' element={<><NavBar /><Slideshow /><Products /><Footer/></>} />
       <Route path='/productDetails' element={<><NavBar/><ProductDetails /><Footer/></>} />
       <Route path='/login' element={<Login />} />
+      <Route path='/contact' element={<ContactUs />} />
       <Route path='/register' element={<Register />} />
       <Route path='/forget_password' element={<ForgetPassword />} />
       <Route path='*' element={<PageNotFound />} />
@@ -49,6 +51,7 @@ const UserScreens = () => {
       <Route exact path='/favoriteProducts' element={<FavoriteProducts />} />
       <Route path='/productDetails' element={<ProductDetails />} />
       <Route path='/cart' element={<AddToCart/>} />
+      <Route path='/contact' element={<ContactUs />} />
       <Route path='/payment' element={<PaymentMethod />} />
       <Route exact path='/profile' element={<Profile />} />
       <Route exact path='/orderProducts' element={<OrderProducts />} />
@@ -63,6 +66,7 @@ const AdminScreens = () => {
       <Route exact path='/' element={<AdminDashboard />} />
       <Route exact path='/products' element={<Products />} />
       <Route exact path='/profile' element={<Profile />} />
+      <Route path='/contact' element={<ContactUs />} />
       <Route exact path='/orderProducts' element={<OrderProducts />} />
       <Route exact path='/favoriteProducts' element={<FavoriteProducts />} />
       <Route path='*' element={<PageNotFound />} />
