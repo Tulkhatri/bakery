@@ -11,6 +11,7 @@ import Profile from '../containers/sharedScreens/profile';
 import PageNotFound from '../containers/auth/pageNotFound';
 import ProductDetails from '../containers/sharedScreens/productDetails';
 import PaymentMethod from '../containers/sharedScreens/paymentMethod';
+import AddToCart from '../containers/sharedScreens/addToCart';
 import OrderProducts from '../containers/sharedScreens/orderProducts';
 import ImageUpload from '../imageUpload';
 import ImageDisplay from '../imageDisplay';
@@ -47,6 +48,7 @@ const UserScreens = () => {
       <Route exact path='/' element={<UserDashboard />} />
       <Route exact path='/favoriteProducts' element={<FavoriteProducts />} />
       <Route path='/productDetails' element={<ProductDetails />} />
+      <Route path='/cart' element={<AddToCart/>} />
       <Route path='/payment' element={<PaymentMethod />} />
       <Route exact path='/profile' element={<Profile />} />
       <Route exact path='/orderProducts' element={<OrderProducts />} />

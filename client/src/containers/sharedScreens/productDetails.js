@@ -1,12 +1,15 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { faMinus, faPlus, faRedo, faCartShopping, faMapMarker,faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
+import { faMinus, faPlus, faRedo, faCartShopping, faMapMarker, faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { message } from 'antd';
 import '../../App.css'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const ProductDetails = () => {
+    const [totalNavCartCount, setTotalNavCartCount] = useState(0)
+    const { _id } = useSelector(state => state.user);
     const [cartCount, setcartCount] = useState(1)
     const { email, token } = useSelector(state => state.user)
     const { state } = useLocation();
@@ -14,6 +17,38 @@ const ProductDetails = () => {
     const payment = () => {
         state.price = totalPrice
         navigate((email !== '' && token) ? '/payment' : '/login', { state: state })
+    }
+    const addToCart = async (values) => {
+        console.log(state)
+        navigate((email !== '' && token) ? '/cart' : '/login', { state: state })
+        // state.price = totalPrice
+        const cart = {
+            name: state.name,
+            price: state.price,
+            image: state.image,
+            photo: state.photo,
+            quantity: cartCount,
+            totalPrice: cartCount*state.price,
+        }
+        values = cart
+        values.userId = _id
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values),
+        };
+        try {
+            const response = await fetch('http://localhost:3005/cart', requestOptions)
+            const data = await response.json()
+            if (response.status === 409 && data.error) {
+                message.error(data.error, [2])
+            } else if (response.status === 200) {
+                message.success(data.msg, [1])
+            }
+        } catch (err) {
+            message.error(err, [2])
+        }
+
     }
     const totalPrice = state.price * cartCount
     const counter = () => {
@@ -29,8 +64,21 @@ const ProductDetails = () => {
     const counterR = () => {
         setcartCount(1)
     }
+
+    const navCartCount = () => {
+        axios.get(`http://localhost:3005/cart?userId=${_id}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
+            setTotalNavCartCount(res.data.totalCart)
+        })
+    }
+    useEffect(() => {
+        navCartCount()
+    }, [])
+
+
     return (
         <>
+            <FontAwesomeIcon icon={email && faCartShopping} className="navCart" />
+            <div className={email && "navCart_count"}><div>{totalNavCartCount}</div></div>
             <div className="Pdetail">
                 <div className="product_page">
                     <div className="product_page_image">
@@ -74,8 +122,8 @@ const ProductDetails = () => {
                 {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}>  */}
                 <div className="button_submit_buynow">
                     <button className="button_submit" onClick={() => payment()}>Buy Now</button>
-                    <button className="button_submit" onClick={() => message.success("Added items in your cart", [1])}>
-                        <FontAwesomeIcon icon={faCartShopping} onClick={counterR} />  Add to cart 
+                    <button className="button_submit" onClick={() => addToCart()}>
+                        <FontAwesomeIcon icon={faCartShopping} onClick={counterR} />  Add to cart
                     </button>
                 </div>
                 {/* </Link> */}

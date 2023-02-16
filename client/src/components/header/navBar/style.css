@@ -39,7 +39,6 @@ body {
     justify-content: space-around;
     border-top: 1px solid rgb(200, 194, 194);
     align-items: center;
-    flex-wrap: wrap;
     width: 100%;
     height: 25vh;
     padding: 20px;
@@ -51,8 +50,6 @@ body {
 .footer .footer_heading {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: 1.4rem;
     font-weight: 600;
 }
@@ -63,10 +60,11 @@ body {
 }
 .copyright{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     padding: 10px;
-    margin-top: -30px;
+    margin-left: 50%;
+    transform: translateX(-50%);
     margin-bottom: 30px;
 }
 .footer_logo{
@@ -285,7 +283,9 @@ body {
     .admin_task {
 
         margin-left: -77px;
-
+    }
+    .icon {
+        margin-right: 10px;
     }
 }
 
@@ -308,13 +308,19 @@ body {
         margin-top: 28px;
         margin-left: -77px;
     }
-}
-
-
-@media screen and (min-width: 460px) and (max-width: 767px) {
     .icon {
         margin-right: 10px;
     }
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 767px) {
+     .icon {
+        margin-right: 5px;
+    }
+}
+@media screen and (min-width: 460px) and (max-width: 767px) {
+   
 
     .admin_task {
         margin-top: 28px;

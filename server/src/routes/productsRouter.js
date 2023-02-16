@@ -3,6 +3,8 @@ const router = express.Router()
 const Products = require('../models/products')
 const OrderProducts = require('../models/orderProducts')
 const FavoriteProducts = require('../models/favoriteProducts')
+const CartOrderProducts = require('../models/cartOrder')
+const Cart = require('../models/cart')
 const jwt = require('jsonwebtoken');
 const multer = require('multer')
 
@@ -123,6 +125,18 @@ router.post('/orderProducts', async (req, res) => {
 
   }
 });
+router.post('/cartOrderProducts', async (req, res) => {
+  try {
+    const cartOrderProducts = await CartOrderProducts.create(req.body)
+    if (cartOrderProducts) {
+      res.json({ msg: 'Order successful' });
+    } else {
+      res.json({ msg: 'something went worng' });
+    }
+  } catch (err) {
+
+  }
+});
 
 router.post('/favoriteProducts', async (req, res) => {
   try {
@@ -195,4 +209,44 @@ router.get('/orderProducts', async (req, res) => {
 
   }
 });
+router.post('/cart', async (req, res) => {
+  try {
+    const cart = await Cart.create(req.body)
+    if (cart) {
+      res.json({ msg: 'Items is added' });
+    } else {
+      res.json({ msg: 'something went worng' });
+    }
+  } catch (err) {
+
+  }
+});
+
+router.get('/cart', async (req, res) => {
+  try {
+    const totalCart = await Cart.find({ "userId": req.query.userId })
+    const data = await Cart.find({ "userId": req.query.userId })
+    if (req.query.userId) {
+      res.status(200).json({
+        cart: data,
+        totalCart: totalCart.length
+      })
+    }
+  } catch (err) {
+
+  }
+});
+router.delete('/cart', async (req, res) => {
+  try {
+    if (req.query.userId) {
+      const data = await Cart.findByIdAndDelete(req.body._id)
+      if (data) {
+        res.status(200).json({ msg: "Item is removed" })
+      } else { res.json({ msg: "Something is worong" }) }
+    }
+  } catch (err) {
+  }
+});
+
+
 module.exports = router;

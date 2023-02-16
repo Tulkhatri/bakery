@@ -121,12 +121,34 @@ const Card = (props) => {
             message.error(err, [2])
         }
     }
+    const removeCart = async () => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ _id: props.items._id }),
+        };
+        try {
+            const response = await fetch(`http://localhost:3005/cart?userId=${_id}`, requestOptions)
+            const data = await response.json()
+            if (response.status === 200) {
+                props.fetchProducts();
+            }
+            if (response.status === 409 && data.error) {
+                message.error(data.error, [2])
+            } else if (response.status === 200) {
+                message.success(data.msg, [1])
+            }
+        } catch (err) {
+            message.error(err, [2])
+        }
+    }
     return (
         <>
             <Modal title="" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={null}>
                 {props.email === 'tulkhatri01@gmail.com' ? <EditForm isAdminEdit={true} items={props.items} inputFields={inputFields} addButton={addButton} addProduct={addProduct} postRequest={postRequest} /> : <CustomForm inputFields={inputFields} />}
             </Modal>
             <div>
+                <div onClick={() => removeCart()}>{props.faClose}</div>
                 <FontAwesomeIcon icon={faHeart} className='favorite_icon' id={props.items.color && "favorate_icon_Redcolor"} onClick={() => email ? props.items.color ? removeFavorite() : favoriteItems() : navigate("/login")} />
                 <div className="card_view" onClick={() => productDetails()}>
                     <div className="card_image">

@@ -9,31 +9,32 @@ import { useNavigate, Link } from 'react-router-dom';
 const NavBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { name, email } = useSelector(state => state.user)
+  const {  name, } = useSelector(state => state.user)
   const logoutFunction = () => {
-    if(name!==''){
+    if (name !== '') {
       dispatch(logoutResetDetails())
       navigate('/')
     }
-    else{
+    else {
       navigate('/login')
     }
+
   }
   return (
     <>
-    <div>
-      <div className='navBox1'>
-      <Link to='/'><div className='site_name'>Live bakery</div></Link>
-      </div>
-      <div className='navBox2'>
-        <div className='icon'>
-          <div className='user_details'>
-          <Link to='/profile'>  <div className='user_name'>{name}</div></Link>
-            <button className='button_logout' onClick={logoutFunction}>{name?'Logout':'Login'}</button>
-          </div>
-          <FontAwesomeIcon icon={faUser} className='user_icon' />
+      <div>
+        <div className='navBox1'>
+          <Link to='/'><div className='site_name'>Live bakery</div></Link>
         </div>
-      </div>
+        <div className='navBox2'>
+          <div className='icon'>
+            <div className='user_details'>
+              <Link to='/profile'>  <div className='user_name'>{name}</div></Link>
+              <button className='button_logout' onClick={logoutFunction}>{name ? 'Logout' : 'Login'}</button>
+            </div>
+            <FontAwesomeIcon icon={faUser} className='user_icon' />
+          </div>
+        </div>
       </div>
     </>
   );
