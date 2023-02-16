@@ -2,6 +2,8 @@ import { ADD_USER_DETAILS, REMOVE_USER_DETAILS_LOGOUT } from '../actionTypes/act
 const initialState = {
   email: '',
   name: '',
+  address: '',
+  phoneNumber: '',
   token: '',
   role: '',
   _id: '',//react ma id matra hunxa but najhukkiyo vanera sabai tira _id garna sakiyo
@@ -10,11 +12,13 @@ const initialState = {
 const userSlice = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER_DETAILS:
-      const { name, email, role, _id, token } = action.payload//server le _id pathauxa yesma chahi _id nai rakhnuparxa
+      const { name, email, role, _id, token,address,phoneNumber } = action.payload//server le _id pathauxa yesma chahi _id nai rakhnuparxa
       return {
         ...state,
         name,
         email,
+        address,
+        phoneNumber,
         role,
         _id,
         token,
