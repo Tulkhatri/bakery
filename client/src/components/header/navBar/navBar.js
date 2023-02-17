@@ -24,7 +24,7 @@ const NavBar = () => {
     <>
       <div>
         <div className='navBox1'>
-          <Link to='/'><div className='site_name'>Live bakery</div></Link>
+          <Link to='/'><div className='site_name'>Live <span>bakery</span></div></Link>
         </div>
         <div className='navBox2'>
           <div className='icon'>

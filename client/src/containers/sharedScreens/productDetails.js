@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { faMinus, faPlus, faRedo, faCartShopping, faMapMarker, faMoneyCheckDollar } from '@fortawesome/free-solid-svg-icons';
@@ -8,10 +8,10 @@ import '../../App.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 const ProductDetails = () => {
-    const [totalNavCartCount, setTotalNavCartCount] = useState(0)
     const { _id } = useSelector(state => state.user);
     const [cartCount, setcartCount] = useState(1)
     const { email, token } = useSelector(state => state.user)
+    const [totalNavCartCount, setTotalNavCartCount] = useState(0)
     const { state } = useLocation();
     const navigate = useNavigate();
     const payment = () => {
@@ -28,7 +28,7 @@ const ProductDetails = () => {
             image: state.image,
             photo: state.photo,
             quantity: cartCount,
-            totalPrice: cartCount*state.price,
+            totalPrice: cartCount * state.price,
         }
         values = cart
         values.userId = _id
@@ -48,7 +48,6 @@ const ProductDetails = () => {
         } catch (err) {
             message.error(err, [2])
         }
-
     }
     const totalPrice = state.price * cartCount
     const counter = () => {
@@ -59,12 +58,10 @@ const ProductDetails = () => {
 
             setcartCount(cartCount - 1)
         }
-
     }
     const counterR = () => {
         setcartCount(1)
     }
-
     const navCartCount = () => {
         axios.get(`http://localhost:3005/cart?userId=${_id}`).then((res) => {//page xa vane page xina vane 1 vaneko first page
             setTotalNavCartCount(res.data.totalCart)
@@ -74,16 +71,14 @@ const ProductDetails = () => {
         navCartCount()
     }, [])
 
-
     return (
         <>
             <FontAwesomeIcon icon={email && faCartShopping} className="navCart" />
-            <div className={email && "navCart_count"}><div>{totalNavCartCount}</div></div>
+            {email && <div className={"navCart_count"}><div>{totalNavCartCount}</div></div>}
             <div className="Pdetail">
                 <div className="product_page">
                     <div className="product_page_image">
                         {state.photo && <img src={require(`../../uploads/product/${state.photo}`)} alt='Loading' />}
-
                     </div>
                     <div className="product_page_data">
                         <div className="product_details_name">{state.name}</div>
@@ -116,7 +111,6 @@ const ProductDetails = () => {
                         </div>
                     </div>
                 </div>
-
 
                 {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}> <button className="button_submit" >Buy Now</button></Link> */}
                 {/* <Link to={(email !== '' && token) ? '/payment' : '/login'}>  */}
