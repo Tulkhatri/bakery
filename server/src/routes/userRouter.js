@@ -4,7 +4,7 @@ const Users = require('../models/users')
 const bcrypt = require('bcrypt')
 const multer = require('multer')
 const jwt = require('jsonwebtoken');
-
+const Message = require('../models/message')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -14,24 +14,24 @@ const storage = multer.diskStorage({
     cb(null, file.originalname)
 
   }
-})
+});
 const upload = multer({ storage: storage })
 router.post('/profile', upload.single('avatar'), async (req, res, next) => {
-  try{
-  const data = await Users.findByIdAndUpdate(req.body._id, { avatar: req.file.filename })//imageName lai update garne but req.file.filename ma j aauxa tehi banaune
-  if (data) {
-    res.status(200).json({
-      userDetails: data,
-      msg: 'Profile updated'
-    })
-  } else {
-    res.status(500).json({ msg: 'Something is wrong' });
-  }
+  try {
+    const data = await Users.findByIdAndUpdate(req.body._id, { avatar: req.file.filename })//imageName lai update garne but req.file.filename ma j aauxa tehi banaune
+    if (data) {
+      res.status(200).json({
+        userDetails: data,
+        msg: 'Profile updated'
+      })
+    } else {
+      res.status(500).json({ msg: 'Something is wrong' });
+    }
 
-} catch (err) {
-  res.status(409).json({ msg: 'Error' });
-}
-})
+  } catch (err) {
+    res.status(409).json({ msg: 'Error' });
+  }
+});
 
 router.get("/user/:id", async (req, res) => {
   try {
@@ -49,8 +49,6 @@ router.get("/user/:id", async (req, res) => {
     console.log(err);
   }
 });
-
-
 
 router.post('/register', async (req, res) => {
   try {
@@ -85,7 +83,7 @@ router.post('/login', async (req, res) => {
         res.status(200).json({
           msg: 'Logged in success',
           userList: refactoredUserObj,//if we needed all data of user we just send user and not need to lean()but when we want to refactor user and take user without any one or mor field like password we need to remove internal cache by using lean()for porpor display
-           sendEmail: email
+          sendEmail: email
         })
       }
       else {
@@ -105,5 +103,30 @@ router.post('/login', async (req, res) => {
   }
 
 });
+router.post('/message', async (req, res) => {
+  try {
+    const data = await Message.create(req.body);
+    if (data) {
+      res.json({ msg: 'Message has been send' });
+    } else {
+      res.json({ msg: 'something went worng' });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+router.get('/message', async (req, res) => {
+  try {
 
+    const data = await Message.find({"userId": req.query.userId});
+    if (req.query.userId) {
+      res.json({ messageData: data });
+    } else {
+      res.json({ msg: 'something went worng' });
+    }
+
+  } catch (err) {
+    console.log(err);
+  }
+});
 module.exports = router;

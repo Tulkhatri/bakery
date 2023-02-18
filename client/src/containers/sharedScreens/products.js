@@ -39,9 +39,10 @@ const Products = () => {
         <>
             <div className="hangingImage">
                 <div className="swing">
-                    <img src="https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg?auto=compress&cs=tinysrgb&w=600" width="200" />
+                    <img src="https://cdn.igp.com/f_auto,q_auto,t_pnopt12prodlp/products/p-stars-chocolate-cake-half-kg--4784-m.jpg" width="200" />
+                   {console.log(validItems)}
                     <center><div className="section-titles">Today's Special</div>
-                        <p className="section-titles">Cake 1</p>
+                        <p className="section-titles">Cake</p>
                         <span className="section-titles"><strike>Rs.1000</strike></span> <span class="section-titles">Rs.500</span></center>
                 </div>
             </div>

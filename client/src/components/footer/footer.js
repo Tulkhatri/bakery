@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom';
 import { faMessage, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { message } from 'antd';
+import axios from 'axios';
 const Footer = () => {
-    const { email } = useSelector(state => state.user)
-
+    const { email, _id } = useSelector(state => state.user)
+    const [allMessage, setAllMessage] = useState([]);
+    const [sendSingleMessage, setSendSingleMessage] = useState("");
     const [close, setClose] = useState("none")
     const chatOpen = () => {
         setClose("block")
@@ -15,6 +18,35 @@ const Footer = () => {
     const chatClose = () => {
         setClose("none")
     }
+
+    const getMessage = async () => {
+        const res = await axios.get(`http://localhost:3005/message?userId=${_id}`)
+        setAllMessage(res.data.messageData)
+    }
+    const message1 = {
+        message: sendSingleMessage,
+    }
+    const sendMessage = async (values) => {
+        values = message1;
+        values.userId = _id
+        console.log(values)
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(values),
+        };
+        try {
+            fetch('http://localhost:3005/message', requestOptions)
+            getMessage();
+        } catch (err) {
+            message.error(err, [2])
+        }
+    }
+
+    useEffect(() => {
+        getMessage();
+    }, []);
+
     return (
         <>
             <div className='footer'>
@@ -48,10 +80,16 @@ const Footer = () => {
                     <span class="closeBtn" onClick={() => chatClose()}>&times;</span>
                 </div>
                 <div class="chatBody">
+                    {allMessage.map(items => {
+                        return <div className="chat_message"><span>{items.message}</span></div>
+                    }
+                    )}
                 </div>
                 <div class="chatFooter">
-                    <input type="text" placeholder="Type your message here" />
-                    <button>
+                    <input type="text" placeholder="Type your message here"
+                        onChange={(e) => setSendSingleMessage(e.target.value)}
+                    />
+                    <button onClick={() => sendMessage()}>
                         <FontAwesomeIcon icon={faPaperPlane} />
                     </button>
                 </div>
