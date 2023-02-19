@@ -49,6 +49,22 @@ router.get("/user/:id", async (req, res) => {
     console.log(err);
   }
 });
+router.get("/user", async (req, res) => {
+  try {
+    const data = await Users.find()
+
+    if (data) {
+      res.status(200).json({
+        userDetails: data
+      })
+    } else {
+      res.status(500).json({ msg: 'Something is wrong' });
+    }
+
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 router.post('/register', async (req, res) => {
   try {

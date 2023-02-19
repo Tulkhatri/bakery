@@ -19,7 +19,6 @@ const ProductDetails = () => {
         navigate((email !== '' && token) ? '/payment' : '/login', { state: state })
     }
     const addToCart = async (values) => {
-        console.log(state)
         navigate((email !== '' && token) ? '/cart' : '/login', { state: state })
         // state.price = totalPrice
         const cart = {

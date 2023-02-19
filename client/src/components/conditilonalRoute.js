@@ -22,7 +22,7 @@ import ContactUs from '../containers/sharedScreens/conactUs';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
-    return <><NavBar /><AdminScreens /><Footer/></>
+    return <><NavBar /><AdminScreens /></>
   } else if (email !== '' && token) {
     return <><NavBar /><UserScreens /><Footer/></>
   }
