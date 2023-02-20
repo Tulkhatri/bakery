@@ -8,6 +8,12 @@ import { useRef, useEffect, useState } from 'react';
 import { message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+//for socket
+import io from 'socket.io-client';
+// const socket = io();different domain vayekole talako line use gareko
+const socket = io("http://localhost:3005");
+
 const Footer = (props) => {
     const navigate = useNavigate()
     const { email, _id } = useSelector(state => state.user)
@@ -54,8 +60,15 @@ const Footer = (props) => {
     useEffect(() => {
         getMessage();
         inputRef.current.focus();
-
+        socket.on('connect', () => {
+        });
     }, [props.getmessageFromId]);//admin ma first load mai message dekhauna 
+
+    // useEffect(() => {
+    //     getMessage();
+    //     socket.on('connect', () => {
+    //     });
+    // }, []);
     return (
         <>
             <div className='footer'>
