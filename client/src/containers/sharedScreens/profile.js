@@ -39,7 +39,6 @@ const Profile = () => {
 
     return (
         <>
-            <h1>profile</h1>
             <div className='profile_page'>
                 {userDetails.avatar && <img src={require(`../../uploads/profile/${userDetails.avatar}`)} className='profile_image' alt='Loading'/>}
                 <div>
