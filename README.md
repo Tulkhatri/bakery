@@ -12,7 +12,7 @@
 * React Props
 * React Router DOM 
 * Formik & Yup for Form Validation in React
-* Redux/Redux Persist
+* React Redux/Redux Persist
 * React Logger
 * UI Libraries -Ant Design
 * Mongo DB, Express
@@ -46,10 +46,10 @@
 
 ## Future Build up on the project 
   - [ ] Courier Service
-  - [ ] Live tracking Order in leaflet map 
+  - [ ] Live tracking Orders without Login
   - [ ] OTP Login, No Password Login
   - [ ] Different Payment Method
-  - [ ] Display Different Discount
+  - [ ] Display Different Offer schemes
   - [ ] Include More Category
 
 ## Screenshot of the Live Bakery
@@ -85,7 +85,10 @@
 ![AdminDashboard](https://github.com/Tulkhatri/bakery/blob/develop/Live_bakery_screenshot/Live_Bakery_Admin_Dashboard.png)
 
 - Add Product
-![AddProduct](https://github.com/Tulkhatri/bakery/blob/develop/Live_bakery_screenshot/Live_Bakery_AddProduct)
+![AddProduct](https://github.com/Tulkhatri/bakery/blob/develop/Live_bakery_screenshot/Live_Bakery_AddProduct.png)
+
+- Admin View Products
+![AdminViewProducts](https://github.com/Tulkhatri/bakery/blob/develop/Live_bakery_screenshot/Live_Bakery_admin_View_Products.png)
 
 - Admin View Orders
 ![AdminViewOrderDetails](https://github.com/Tulkhatri/bakery/blob/develop/Live_bakery_screenshot/Live_Bakery_Admin_View_OrderDetails.png)
