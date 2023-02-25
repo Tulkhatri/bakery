@@ -19,6 +19,8 @@ import Slideshow from './header/imageSlide/imageSlide';
 import Footer from './footer/footer';
 import FavoriteProducts from '../containers/sharedScreens/favoriteProducts';
 import ContactUs from '../containers/sharedScreens/conactUs';
+import Student from '../populateEg/student';
+import Course from '../populateEg/course';
 function ConditionalRoute() {
   const { email, token } = useSelector(state => state.user)
   if (email === 'tulkhatri01@gmail.com' && token) {
@@ -34,6 +36,8 @@ const AuthScreens = () => {
       {/* <Route path='/' element={<><NavBar /><Slideshow /></>} /> */}
       <Route path='/' element={<><NavBar /><Slideshow /><Products /><Footer/></>} />
       <Route path='/productDetails' element={<><NavBar/><ProductDetails /><Footer/></>} />
+      <Route path='/student' element={<Student />} />
+      <Route path='/course' element={<Course />} />
       <Route path='/login' element={<Login />} />
       <Route path='/contact' element={<ContactUs />} />
       <Route path='/register' element={<Register />} />

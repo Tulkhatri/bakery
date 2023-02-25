@@ -7,6 +7,7 @@ const connect=require('./db/connect')
 const userRouter=require('./routes/userRouter')
 const productsRouter=require('./routes/productsRouter')
 const imageUploadRoute=require('./routes/imageUploadRoute')
+const populateRouter=require('./routes/populateRoutes')
 //for socket
 const http = require('http');
 const server = http.createServer(app);
@@ -26,6 +27,7 @@ app.use(cors())
 app.use(userRouter)
 app.use(productsRouter)
 app.use(imageUploadRoute)
+app.use(populateRouter)
 connect();
 server.listen(process.env.PORT, () => {
     console.log(`Example app listening on port ${process.env.PORT}`)
