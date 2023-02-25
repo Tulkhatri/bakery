@@ -13,8 +13,6 @@ import ProductDetails from '../containers/sharedScreens/productDetails';
 import PaymentMethod from '../containers/sharedScreens/paymentMethod';
 import AddToCart from '../containers/sharedScreens/addToCart';
 import OrderProducts from '../containers/sharedScreens/orderProducts';
-import ImageUpload from '../imageUpload';
-import ImageDisplay from '../imageDisplay';
 import Slideshow from './header/imageSlide/imageSlide';
 import Footer from './footer/footer';
 import FavoriteProducts from '../containers/sharedScreens/favoriteProducts';
@@ -31,7 +29,6 @@ function ConditionalRoute() {
 const AuthScreens = () => {
   return (
     <Routes>
-      {/* <Route path='/' element={<><NavBar /><Slideshow /></>} /> */}
       <Route path='/' element={<><NavBar /><Slideshow /><Products /><Footer/></>} />
       <Route path='/productDetails' element={<><NavBar/><ProductDetails /><Footer/></>} />
       <Route path='/login' element={<Login />} />
