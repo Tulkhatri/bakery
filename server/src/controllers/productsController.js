@@ -4,7 +4,7 @@ const FavoriteProducts = require('../models/favoriteProducts')
 const CartOrderProducts = require('../models/cartOrder')
 const Cart = require('../models/cart')
 
-const PostProducts= async (req, res, next) => {
+const PostProducts = async (req, res, next) => {
 
   const body = req.body;
 
@@ -23,7 +23,7 @@ const PostProducts= async (req, res, next) => {
   }
 }
 
-const PutProducts=(async (req, res) => {
+const PutProducts = (async (req, res) => {
   try {
     const data = await Products.findByIdAndUpdate(req.body._id, req.body)
     if (data) {
@@ -34,7 +34,7 @@ const PutProducts=(async (req, res) => {
   }
 });
 
-const DeleteProducts=('/products', async (req, res) => {
+const DeleteProducts = ('/products', async (req, res) => {
   try {
     const data = await Products.findByIdAndDelete(req.body._id)
     if (data) {
@@ -44,7 +44,7 @@ const DeleteProducts=('/products', async (req, res) => {
 
   }
 });
-const DeleteFavoriteProducts=('/favoriteProducts', async (req, res) => {
+const DeleteFavoriteProducts = ('/favoriteProducts', async (req, res) => {
   try {
     if (req.query.userId) {
       const data = await FavoriteProducts.findByIdAndDelete(req.body._id)
@@ -59,7 +59,7 @@ const DeleteFavoriteProducts=('/favoriteProducts', async (req, res) => {
 });
 
 // router.get("/products", tokenValidator, async (req, res) => {
-const GetProducts=(async (req, res) => {
+const GetProducts = (async (req, res) => {
 
   const { qSearch } = req.query;
   const search = (validItems) => {
@@ -91,7 +91,7 @@ const GetProducts=(async (req, res) => {
   }
 });
 
-const OrderProduct=(async (req, res) => {
+const OrderProduct = (async (req, res) => {
   try {
     const orderProducts = await OrderProducts.create(req.body)
     if (orderProducts) {
@@ -103,7 +103,7 @@ const OrderProduct=(async (req, res) => {
 
   }
 });
-const CartOrderProduct=(async (req, res) => {
+const CartOrderProduct = (async (req, res) => {
   try {
     const cartOrderProducts = await CartOrderProducts.create(req.body)
     if (cartOrderProducts) {
@@ -116,7 +116,7 @@ const CartOrderProduct=(async (req, res) => {
   }
 });
 
-const PostFavoriteProducts=(async (req, res) => {
+const PostFavoriteProducts = (async (req, res) => {
   try {
     const favoriteProducts = await FavoriteProducts.create(req.body)
     if (favoriteProducts) {
@@ -129,10 +129,11 @@ const PostFavoriteProducts=(async (req, res) => {
   }
 });
 
-const GetFavoriteProducts=(async (req, res) => {
+const GetFavoriteProducts = (async (req, res) => {
   try {
     const totalFavoriteProducts = await FavoriteProducts.find({ "userId": req.query.userId })
     const data = await FavoriteProducts.find({ "userId": req.query.userId })
+      .populate("products")
     if (req.query.userId) {
       res.status(200).json({
         favoriteProducts: data,
@@ -144,7 +145,7 @@ const GetFavoriteProducts=(async (req, res) => {
   }
 });
 
-const PatchOrderProducts=(async (req, res) => {
+const PatchOrderProducts = (async (req, res) => {
   try {
     const orderProducts = await OrderProducts.findByIdAndUpdate(req.body.id, { "orderStatus": req.body.status })
     if (orderProducts) {
@@ -157,22 +158,23 @@ const PatchOrderProducts=(async (req, res) => {
   }
 });
 
-const GetOrderProducts=(async (req, res) => {
-
+const GetOrderProducts = (async (req, res) => {
   const { qSearch } = req.query;
   const keys = ["name", "price", "orderStatus"]
   const search = (validItems) => {
     return validItems.filter((items) =>
       // items.name.toLowerCase().includes(qSearch.toLowerCase()) ||
       // items.price.toLowerCase().includes(qSearch.toLowerCase())
-      keys.some((key) => items[key].toLowerCase().includes(qSearch.toLowerCase()))//by using array we can write code in single line
-
+      // keys.some((key) => items.products[key].toLowerCase().includes(qSearch.toLowerCase()))//by using array we can write code in single line
+      keys.some((key) => items.products.name.toLowerCase().includes(qSearch.toLowerCase()))//by using array we can write code in single line
     )
   }
   try {
     const data = await OrderProducts.find()
+      .populate("products")
     if (req.query.userId) {
       const data = await OrderProducts.find({ "userId": req.query.userId })
+        .populate("products")
       res.status(200).json({
         orderProducts: search(data)
       })
@@ -187,7 +189,7 @@ const GetOrderProducts=(async (req, res) => {
 
   }
 });
-const PostCart=(async (req, res) => {
+const PostCart = (async (req, res) => {
   try {
     const cart = await Cart.create(req.body)
     if (cart) {
@@ -200,10 +202,11 @@ const PostCart=(async (req, res) => {
   }
 });
 
-const GetCart=(async (req, res) => {
+const GetCart = (async (req, res) => {
   try {
     const totalCart = await Cart.find({ "userId": req.query.userId })
     const data = await Cart.find({ "userId": req.query.userId })
+      .populate("products")
     if (req.query.userId) {
       res.status(200).json({
         cart: data,
@@ -214,7 +217,7 @@ const GetCart=(async (req, res) => {
 
   }
 });
-const DeleteCart=(async (req, res) => {
+const DeleteCart = (async (req, res) => {
   try {
     if (req.query.userId) {
       const data = await Cart.findByIdAndDelete(req.body._id)

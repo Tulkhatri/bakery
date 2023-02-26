@@ -6,9 +6,8 @@ const PaymentMethod = () => {
   const { _id } = useSelector(state => state.user);
   const { state } = useLocation();
   const orderProducts = {
-    name: state.name,
-    price: state.price,
-    image: state.image,
+    products: state._id || state.products._id,
+    quantity:state.quantity
   }
   const conformPayment = async (values) => {
     values = orderProducts
@@ -33,7 +32,7 @@ const PaymentMethod = () => {
   return (
     <>
       <div className="paymentPage">
-        <div className="pamentPage_name">{state.name}</div>
+        <div className="pamentPage_name">{state.name || state.products.name}</div>
         <div className="pamentPage_name">Total Amount Rs. {state.price}</div>
         {/* <Link to='/eSewa'> <button >eSewa</button></Link> */}
         <div >

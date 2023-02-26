@@ -5,4 +5,4 @@ const productsSchema = new mongoose.Schema({
     image: { type: String },
     photo: { type: String },
 }, { collection: 'products' });
-module.exports = mongoose.model('products', productsSchema)
+module.exports = mongoose.model('Products', productsSchema)

@@ -70,13 +70,10 @@ const Card = (props) => {
         }
     }
     const productDetails = () => {
-        navigate(props.email === 'tulkhatri01@gmail.com' ? '' : '/productDetails', { state: props.items })
+        navigate(props.email === 'tulkhatri01@gmail.com' ? '' : '/productDetails', props.items.products ? { state: props.items.products } : { state: props.items })
     }
     const favoriteProducts = {
-        name: props.items.name,
-        price: props.items.price,
-        photo: props.items.photo,
-        description: props.items.description,
+        products: props.items._id,
     }
     const favoriteItems = async (values) => {
         values = favoriteProducts
@@ -152,11 +149,12 @@ const Card = (props) => {
                 <FontAwesomeIcon icon={faHeart} className='favorite_icon' id={props.items.color && "favorate_icon_Redcolor"} onClick={() => email ? props.items.color ? removeFavorite() : favoriteItems() : navigate("/login")} />
                 <div className="card_view" onClick={() => productDetails()}>
                     <div className="card_image">
-                        {props.items.photo && <img src={require(`../../uploads/product/${props.items.photo}`)} alt='Loading' />}
+                        {props.items.photo ? <img src={require(`../../uploads/product/${props.items.photo}`)} alt='Loading' />
+                            : <img src={require(`../../uploads/product/${props.items.products.photo}`)} alt='Loading' />}
                     </div>
                     <div className='namePrice'>
-                        <div className="card_name">{props.items.name}</div>
-                        <div className="card_price">{"Rs. " + props.items.price}</div>
+                        <div className="card_name">{props.items.name || props.items.products.name}</div>
+                        <div className="card_price">{`Rs.  ${props.items.price || props.items.products.price}`}</div>
                     </div>
                     <div className='action_button'>
                         {props.email === 'tulkhatri01@gmail.com' ? <div onClick={() => showModal(true)}>

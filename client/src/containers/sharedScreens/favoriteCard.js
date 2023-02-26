@@ -22,7 +22,7 @@ const FavoriteCard = (props) => {
                 </div>
                 {props.favoriteItems.map(items => <div onClick={() => navigate("/favoriteProducts")} className='fevorateCard_data' >
                     <FontAwesomeIcon icon={faHeart} id="favorate_icon_Redcolor" />
-                    {" " + items.name}
+                    {" " + items.products.name}
                 </div>)}
             </div>
         </>

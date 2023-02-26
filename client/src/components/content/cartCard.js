@@ -30,11 +30,11 @@ const CartCard = (props) => {
             <div className='cart_card'>
                 <div onClick={() => removeCart()}>{props.faClose}</div>
                 <div className='cart_card_image'>
-                    {props.items.photo && <img src={require(`../../uploads/product/${props.items.photo}`)} alt='Loading' />}
+                    {props?.items?.products?.photo && <img src={require(`../../uploads/product/${props?.items?.products?.photo}`)} alt='Loading' />}
                 </div>
                 <div >
                     <div className='cart_card_heading'>Name</div>
-                    <div className='cart_card_value'>{props.items.name}</div>
+                    <div className='cart_card_value'>{props?.items?.products?.name}</div>
                 </div>
                 <div>
                     <div className='cart_card_heading'>Quantity</div>
@@ -42,7 +42,7 @@ const CartCard = (props) => {
                 </div>
                 <div>
                     <div className='cart_card_heading'>Rate</div>
-                    <div className='cart_card_value'>{"Rs. " + props.items.price}</div>
+                    <div className='cart_card_value'>{"Rs. " + props?.items?.products?.price}</div>
                 </div>
                 <div>
                     <div className='cart_card_heading'>Total Price</div>

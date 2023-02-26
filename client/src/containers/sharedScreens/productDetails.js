@@ -16,18 +16,17 @@ const ProductDetails = () => {
     const navigate = useNavigate();
     const payment = () => {
         state.price = totalPrice
+        state.quantity=cartCount
         navigate((email !== '' && token) ? '/payment' : '/login', { state: state })
     }
     const addToCart = async (values) => {
         navigate((email !== '' && token) ? '/cart' : '/login', { state: state })
         // state.price = totalPrice
+        console.log("Hellooooo" + state.items)
         const cart = {
-            name: state.name,
-            price: state.price,
-            image: state.image,
-            photo: state.photo,
+            products: state._id || state.products._id,
             quantity: cartCount,
-            totalPrice: cartCount * state.price,
+            totalPrice: cartCount * state.price || cartCount * state.products.price,
         }
         values = cart
         values.userId = _id
@@ -48,7 +47,7 @@ const ProductDetails = () => {
             message.error(err, [2])
         }
     }
-    const totalPrice = state.price * cartCount
+    const totalPrice = state.price * cartCount || state.products.price * cartCount
     const counter = () => {
         setcartCount(cartCount + 1)
     }
@@ -77,10 +76,11 @@ const ProductDetails = () => {
             <div className="Pdetail">
                 <div className="product_page">
                     <div className="product_page_image">
-                        {state.photo && <img src={require(`../../uploads/product/${state.photo}`)} alt='Loading' />}
+                        {state.photo ? <img src={require(`../../uploads/product/${state.photo}`)} alt='Loading' />
+                            : <img src={require(`../../uploads/product/${state.products.photo}`)} alt='Loading' />}
                     </div>
                     <div className="product_page_data">
-                        <div className="product_details_name">{state.name}</div>
+                        <div className="product_details_name">{state.name || state.products.name}</div>
                         <div className="product_details_name">Rs. {totalPrice}</div>
                         <div className="counter">
                             <div className="counter_value">{cartCount}</div>

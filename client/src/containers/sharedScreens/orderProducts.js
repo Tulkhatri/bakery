@@ -1,6 +1,6 @@
 import '../../App.css'
 import axios from "axios";
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,6 @@ const OrderProducts = () => {
         const apiReqUser = `http://localhost:3005/orderProducts?userId=${_id}&qSearch=${query}`
         axios.get(email === 'tulkhatri01@gmail.com' ? apiReqAdmin : apiReqUser).then((res) => {
             setOrderProducts(res.data.orderProducts)
-
         })
     }
     const changeStatus = (status, productId) => {
@@ -24,7 +23,6 @@ const OrderProducts = () => {
             id: productId,
         }
         axios.patch(`http://localhost:3005/orderProducts/status`, statusDetails)
-
     }
     useEffect(() => {
         fetchOrderProducts()
@@ -78,9 +76,10 @@ const OrderProducts = () => {
                         {email === 'tulkhatri01@gmail.com' && <th>Order Id</th>}
                         <th>Name</th>
                         <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
                         <th>Status</th>
                         {email === 'tulkhatri01@gmail.com' && <th>Action</th>}
-
                     </tr>
                     {orderProduct.map((items) => {
                         return (
@@ -89,8 +88,11 @@ const OrderProducts = () => {
                                     {email === 'tulkhatri01@gmail.com' && <span className='userId_table'>
                                         <td onClick={() => showModal(items.userId)}>{items.userId}</td>
                                     </span>}
-                                    <td>{items.name}</td>
-                                    <td>{items.price}</td>
+
+                                    <td>{items.products.name}</td>
+                                    <td>{items.products.price}</td>
+                                    <td>{items.quantity}</td>
+                                    <td>{(items.products.price) * (items.quantity)}</td>
                                     <td>{items.orderStatus}</td>
                                     {email === 'tulkhatri01@gmail.com' && <td>
                                         <button onClick={() => changeStatus("Accept", (items._id))}>Accept</button>
@@ -100,7 +102,6 @@ const OrderProducts = () => {
                             </>
                         );
                     })}
-
                 </table>
             </div>
         </>
