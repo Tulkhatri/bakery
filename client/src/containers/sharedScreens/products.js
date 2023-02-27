@@ -32,7 +32,10 @@ const Products = () => {
     }
 
     useEffect(() => {
-        fetchProducts()
+        const getData = setTimeout(() => {//example of debouncing
+            fetchProducts()
+        }, query && 700)//search ko lagi matra 700 milisecond time line by default time lidaina Query && condition use garekole
+        return () => clearTimeout(getData)//one character type garera 700 milisecond vanda agadi next character type garyo vane pahile ko time reset garera feri 700 milisecond time set garxa 
     }, [query])
 
     return (

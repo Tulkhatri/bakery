@@ -62,18 +62,22 @@ const DeleteFavoriteProducts = ('/favoriteProducts', async (req, res) => {
 const GetProducts = (async (req, res) => {
 
   const { qSearch } = req.query;
-  const search = (validItems) => {
-    return validItems.filter((items) =>
-      items.name.toLowerCase().includes(qSearch.toLowerCase()) ||
-      items.price.toLowerCase().includes(qSearch.toLowerCase())
-    )
-  }
+  // const search = (validItems) => {
+  //   return validItems.filter((items) =>
+  //     items.name.toLowerCase().includes(qSearch.toLowerCase()) ||
+  //     items.price.toLowerCase().includes(qSearch.toLowerCase())
+  //   )
+  // }
 
   try {
     if (qSearch.length > 0) {
-      const data = await Products.find()
+      const data = await Products.find({
+        name: { $regex: qSearch, $options: 'i' }
+        
+      })
       res.json({
-        products: search(data),
+        // products: search(data),
+        products: data,
       })
     } else {
 

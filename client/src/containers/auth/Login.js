@@ -54,7 +54,7 @@ const Login = () => {
                             message.error(data.errorMsg, [2])
                            
                         }
-                        // resetForm({ values: '' })
+                         resetForm({ values: '' })
                     }}
                 >
                     {({ errors, touched }) => (
